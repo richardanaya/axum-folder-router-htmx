@@ -91,6 +91,11 @@ video {
     margin-bottom: var(--size-5);
 }
 
+picture {
+    margin-bottom: var(--size-5);
+    display: block;
+}
+
 ul {
     margin-bottom: var(--size-5);
 }
