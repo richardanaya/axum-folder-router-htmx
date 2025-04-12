@@ -91,6 +91,10 @@ ol {
     margin-bottom: var(--size-5);
 }
 
+figcaption {
+    margin-bottom: var(--size-5);
+}
+
 form {
     display: flex;
     flex-direction: column;
