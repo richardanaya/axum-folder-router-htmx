@@ -2,37 +2,39 @@
 @import "https://unpkg.com/open-props/normalize.min.css";
 
 body {
-    background: var(--gradient-6);
+    background: var(--gray-2);
     color: var(--gray-9);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: var(--size-3);
+    font-family: var(--font-mono);
 }
 
 div {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    background: var(--gray-3);
     padding: var(--size-5);
-    border-radius: var(--radius-3);
-    box-shadow: var(--shadow-3);
+    border-radius: 0;
+    box-shadow: var(--shadow-5);
     text-align: center;
     width: 100%;
     max-width: 500px;
+    border: var(--border-size-2) solid var(--gray-5);
 }
 
 h1 {
     font-size: var(--font-size-6);
     margin-bottom: var(--size-4);
     color: var(--gray-9);
-    text-shadow: var(--shadow-1);
+    text-transform: uppercase;
+    letter-spacing: var(--font-letterspacing-2);
 }
 
 p {
     font-size: var(--font-size-3);
     margin-bottom: var(--size-5);
-    color: var(--gray-8);
+    color: var(--gray-7);
 }
 
 form {
@@ -45,50 +47,48 @@ form {
 input {
     padding: var(--size-3);
     font-size: var(--font-size-2);
-    border: var(--border-size-1) solid var(--gray-3);
-    border-radius: var(--radius-2);
-    background: rgba(255, 255, 255, 0.9);
+    border: var(--border-size-2) solid var(--gray-5);
+    border-radius: 0;
+    background: var(--gray-1);
     color: var(--gray-9);
-    box-shadow: var(--inner-shadow-1);
-    transition: all var(--duration-2) var(--ease-2);
+    transition: none;
+    font-family: var(--font-mono);
 }
 
 input:focus {
     outline: none;
-    border-color: var(--blue-5);
-    box-shadow: var(--inner-shadow-2), 0 0 0 3px var(--blue-3);
+    border-color: var(--gray-7);
 }
 
 button {
     padding: var(--size-3);
     font-size: var(--font-size-2);
-    background: var(--red-6);
-    color: white;
-    border: none;
-    border-radius: var(--radius-2);
+    background: var(--gray-6);
+    color: var(--gray-0);
+    border: var(--border-size-2) solid var(--gray-7);
+    border-radius: 0;
     cursor: pointer;
-    transition: all var(--duration-2) var(--ease-2);
-    box-shadow: var(--shadow-2);
+    transition: none;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
 }
 
 button:hover {
-    background: var(--red-7);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-3);
+    background: var(--gray-7);
 }
 
 button:active {
-    transform: translateY(1px);
-    box-shadow: var(--shadow-1);
+    background: var(--gray-5);
 }
 
 div > div {
     margin-top: var(--size-4);
     font-size: var(--font-size-5);
-    font-weight: var(--font-weight-6);
+    font-weight: var(--font-weight-7);
     color: var(--gray-9);
-    text-shadow: var(--shadow-1);
     background: none;
     padding: 0;
     box-shadow: none;
+    border: none;
+    text-transform: uppercase;
 }
