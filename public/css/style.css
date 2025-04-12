@@ -83,6 +83,14 @@ blockquote {
     margin-bottom: var(--size-5);
 }
 
+audio {
+    margin-bottom: var(--size-5);
+}
+
+video {
+    margin-bottom: var(--size-5);
+}
+
 ul {
     margin-bottom: var(--size-5);
 }
