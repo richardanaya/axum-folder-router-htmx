@@ -108,6 +108,10 @@ figcaption {
     margin-bottom: var(--size-5);
 }
 
+pre {
+    margin-bottom: var(--size-5);
+}
+
 form {
     display: flex;
     flex-direction: column;
