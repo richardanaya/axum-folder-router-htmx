@@ -12,9 +12,16 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <main>
+    <div> {# Changed main to div to match style #}
+      <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--size-4);">
+        <p>Welcome, {{ username }}!</p> {# Display username #}
+        <form method="POST" action="/logout" style="margin: 0;"> {# Logout form #}
+            <button type="submit" variant="ghost">Logout</button>
+        </form>
+      </header>
+
       <h1>Shout It Out!</h1>
-      <p>Welcome to our website. What word would you like to shout?</p>
+      <p>What word would you like to shout?</p>
       <form
         id="word-form"
         method="POST"
@@ -34,6 +41,10 @@
         <button type="submit">Shout!</button>
       </form>
       <div id="shouted-word"></div>
-    </main>
+
+      <hr style="margin: var(--size-6) 0;">
+      <p><a href="/ui">View UI Kitchen Sink</a></p> {# Link to UI page #}
+
+    </div> {# Close div #}
   </body>
 </html>
