@@ -52,7 +52,7 @@ fn main() {
                 let methods = ["get", "post", "put", "delete", "patch"];
                 for method in &methods {
                     code.push_str(&format!(
-                        "if let Ok(f) = {}::{} {{ router = router.route(\"{}\", axum::routing::{}(f)); }}\n",
+                        "if let Some(f) = maybe_fn({}::{}) {{ router = router.route(\"{}\", axum::routing::{}(f)); }}\n",
                         mod_name, method, axum_path, method
                     ));
                 }
