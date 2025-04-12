@@ -19,8 +19,22 @@ mod api_routes {
 
 #[tokio::main]
 async fn main() {
-    let app = api_routes::build_router().fallback_service(ServeDir::new("public"));
+    // Generate a secure key for cookie handling.
+    // WARNING: In a real application, DO NOT generate the key on every startup.
+    // Load it from configuration or environment variables to ensure consistency.
+    // For demonstration purposes, we generate a new one each time.
+    let key = Key::generate();
 
+    // Create the application state.
+    let app_state = AppState { key };
+
+    // Build the router and provide the state.
+    let app = api_routes::build_router()
+        .fallback_service(ServeDir::new("public"))
+        .with_state(app_state); // Provide the state here
+
+    // Bind the listener and serve the application.
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    println!("Listening on http://{}", listener.local_addr().unwrap());
     axum::serve(listener, app).await.unwrap();
 }
