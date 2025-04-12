@@ -77,14 +77,15 @@ fn main() {
     code.push_str(
         r#"
 use axum::Router;
+use crate::AppState; // Added import for AppState
 
 #[allow(warnings)]
 fn maybe_fn<F>(f: F) -> Option<F> {
     Some(f)
 }
 
-pub fn build_router() -> Router {
-    let mut router = Router::new();
+pub fn build_router() -> Router<AppState> { // Changed Router to Router<AppState>
+    let mut router = Router::<AppState>::new(); // Changed Router::new() to Router::<AppState>::new()
 "#,
     );
 
