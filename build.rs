@@ -7,6 +7,7 @@ fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("routes.rs");
     let mut code = String::new();
+    code.push_str("#![allow(non_snake_case)]\n");
 
     fn visit_dirs(dir: &Path, base: &Path, code: &mut String) {
         for entry in fs::read_dir(dir).unwrap() {
