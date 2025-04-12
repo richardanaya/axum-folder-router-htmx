@@ -350,7 +350,7 @@ button {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     font-family: var(--font-sans);
-    font-weight: 200;
+    font-weight: var(--font-weight-2);
     text-transform: uppercase;
     box-shadow: var(--shadow-3);
     position: relative;
