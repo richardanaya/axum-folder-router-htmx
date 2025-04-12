@@ -157,6 +157,30 @@ input:focus {
     box-shadow: var(--shadow-3);
 }
 
+select {
+    padding: var(--size-3) var(--size-5) var(--size-3) var(--size-3);
+    font-size: var(--font-size-2);
+    border: none;
+    border-radius: var(--radius-1);
+    background: var(--gray-1);
+    color: var(--gray-9);
+    transition: none;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-3);
+    box-shadow: var(--shadow-2);
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23666666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right var(--size-3) center;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: var(--shadow-3);
+}
+
 input[type="range"]:focus {
     box-shadow: none;
 }
