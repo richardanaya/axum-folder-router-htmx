@@ -49,7 +49,7 @@ fn main() {
 
                 code.push_str(&format!("mod {} {{ include!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/src/api/{}/route.rs\")); }}\n", mod_name, rel_dir.display()));
 
-                let methods = ["get", "post"];
+                let methods = ["get", "post", "put", "delete", "patch"];
                 for method in &methods {
                     code.push_str(&format!(
                         "if let Some(f) = maybe_fn({}::{}) {{ router = router.route(\"{}\", axum::routing::{}(f)); }}\n",
