@@ -6,11 +6,12 @@ body {
     color: var(--gray-9);
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--size-3);
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--size-5);
     font-family: var(--font-sans);
     font-weight: var(--font-weight-3);
+    overflow-y: auto;
 }
 
 div {
@@ -20,7 +21,7 @@ div {
     box-shadow: var(--shadow-5);
     text-align: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 800px;
 }
 
 h1 {
