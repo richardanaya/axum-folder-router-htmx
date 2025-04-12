@@ -1,18 +1,12 @@
-# HTMX and Rust Example Repo
+# HTMX + Rust + NextJS Folder-based Router
 
 This repository is an example that shows my dream setup for HTMX and Rust. It demonstrates a folder router based system inspired by NextJS. The structure leverages Rust with the Axum framework and Askama for neat, clean, typed templates.
 
 ## Overview
 
-- **Folder Router System:** The routing logic is handled by a folder-based structure, ensuring that routes are automatically generated from files in `src/api`.
-- **HTMX Integration:** The HTML templates make use of HTMX to power dynamic, hypermedia-driven interactions.
+- **Folder Router System:** The routing logic is handled by a folder-based structure, ensuring that routes are automatically generated from files in `src/api`. It supports nested routes and segments/slugs (i.e. `foo/[id]` , `blah/[...]`). It does this by generating the routes builder with the `build.rs`
 - **Askama Templates:** Server-rendered pages use Askama for easy and typed template management.
-
-## What This Example Shows
-
-- A simple landing page that processes a form submission.
-- A clean project structure that can be adapted to scale for larger projects.
-- A combination of modern frontend interactivity with powerful Rust tooling.
+- Shows how to use axum_extra for strongly typed Forms
 
 ## Getting Started
 
