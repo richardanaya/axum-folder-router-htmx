@@ -1,7 +1,9 @@
+use std::env;
 use std::fs;
 use std::path::{Path, PathBuf};
 
 fn main() {
+    let api_root = Path::new("src/api");
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("routes.rs");
     let mut code = String::new();
