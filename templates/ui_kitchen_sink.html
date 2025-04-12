@@ -3,181 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UI Kitchen Sink</title>
+    <title>UI Kitchen Sink - Every HTML Element</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>UI Kitchen Sink</h1>
-        <p>This page contains a variety of HTML elements to test the styling and ensure semantic HTML looks great.</p>
+        <header>
+            <h1>UI Kitchen Sink - Every HTML Element</h1>
+            <p>Inspired by the comprehensive showcase at <a href="https://iamwillwang.com/every-html-element/">iamwillwang.com</a>, this page demonstrates a vast array of HTML elements to test our styling.</p>
+        </header>
 
-        <!-- Headings -->
-        <section>
-            <h2>Headings</h2>
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
-        </section>
+        <main>
+            <!-- Headings -->
+            <section>
+                <h2>Headings</h2>
+                <hgroup>
+                    <h1>Heading 1 - Largest</h1>
+                    <h2>Heading 2 - Slightly Smaller</h2>
+                    <h3>Heading 3 - And So On...</h3>
+                    <h4>Heading 4 - Getting Smaller</h4>
+                    <h5>Heading 5 - Almost There</h5>
+                    <h6>Heading 6 - Smallest Heading</h6>
+                </hgroup>
+            </section>
 
-        <!-- Paragraphs and Text -->
-        <section>
-            <h2>Paragraphs and Text</h2>
-            <p>This is a standard paragraph with some <strong>bold text</strong>, <em>italic text</em>, <u>underlined text</u>, and a <a href="#">link</a>.</p>
-            <p>Here's another paragraph with <code>inline code</code>, a <mark>highlighted section</mark>, and a <small>small text</small>.</p>
-            <blockquote>This is a blockquote for longer quotes or citations.</blockquote>
-            <pre>
-                This is preformatted text,
-                often used for code blocks.
-            </pre>
-        </section>
+            <!-- Text and Inline Elements -->
+            <section>
+                <h2>Text and Inline Elements</h2>
+                <p>This is a standard paragraph with some <strong>bold text</strong>, <em>italic text</em>, <b>bold via b</b>, <i>italic via i</i>, <u>underlined text</u>, and a <a href="#">link</a>.</p>
+                <p>Here's another paragraph with <code>inline code</code>, a <mark>highlighted section</mark>, <small>small text</small>, <sub>subscript</sub>, <sup>superscript</sup>, <s>strikethrough</s>, <ins>inserted text</ins>, and <del>deleted text</del>.</p>
+                <p>Special text elements: <bdi>محمد (isolated direction)</bdi>, <bdo dir="rtl">محمد (direction override)</bdo></p>
+                <blockquote>This is a blockquote for longer quotes or citations. It adds credibility!</blockquote>
+                <q>This is a short inline quote.</q>
+                <pre>
+                    This is preformatted text,
+                    often used for code blocks.
+                </pre>
+                <p>Some more elements: <cite>Citation of a source</cite>, <data value="123">Data for machines</data>, <time datetime="2025-04-12T22:35">10:35 PM</time>, <kbd>Ctrl</kbd> for keyboard input, <var>x</var> for variables, <samp>Sample output</samp>, <dfn>Definition term</dfn>, <span>Generic span</span>, and a word break opportunity <wbr>here.</p>
+                <p>Let's add a line break <br> right here for spacing.</p>
+            </section>
 
-        <!-- Lists -->
-        <section>
-            <h2>Lists</h2>
-            <h3>Unordered List</h3>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2
+            <!-- Lists -->
+            <section>
+                <h2>Lists</h2>
+                <h3>Unordered List with <code>&lt;ul&gt;</code></h3>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2
+                        <ul>
+                            <li>Subitem 2.1</li>
+                            <li>Subitem 2.2</li>
+                        </ul>
+                    </li>
+                    <li>Item 3</li>
+                </ul>
+                <h3>Ordered List with <code>&lt;ol&gt;</code></h3>
+                <ol>
+                    <li>First item</li>
+                    <li>Second item
+                        <ol>
+                            <li>Subitem 2.1</li>
+                            <li>Subitem 2.2</li>
+                        </ol>
+                    </li>
+                    <li>Third item</li>
+                </ol>
+                <h3>Definition List with <code>&lt;dl&gt;</code></h3>
+                <dl>
+                    <dt>Term 1</dt>
+                    <dd>Definition for term 1.</dd>
+                    <dt>Term 2</dt>
+                    <dd>Definition for term 2.</dd>
+                </dl>
+                <h3>Menu List with <code>&lt;menu&gt;</code></h3>
+                <menu>
+                    <li>Menu Item 1</li>
+                    <li>Menu Item 2</li>
+                </menu>
+            </section>
+
+            <!-- Tables -->
+            <section>
+                <h2>Tables with <code>&lt;table&gt;</code></h2>
+                <table>
+                    <caption>Table Caption Describing Content</caption>
+                    <thead>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Row 1, Cell 1</td>
+                            <td>Row 1, Cell 2</td>
+                            <td>Row 1, Cell 3</td>
+                        </tr>
+                        <tr>
+                            <td>Row 2, Cell 1</td>
+                            <td>Row 2, Cell 2</td>
+                            <td>Row 2, Cell 3</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Footer content spanning all columns</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+
+            <!-- Forms -->
+            <section>
+                <h2>Forms and Interactive Elements</h2>
+                <form>
+                    <fieldset>
+                        <legend>Form Fieldset - Grouping Related Fields</legend>
+                        <label for="text-input">Text Input:</label>
+                        <input type="text" id="text-input" name="text-input" placeholder="Enter text"><br><br>
+
+                        <label for="email-input">Email Input:</label>
+                        <input type="email" id="email-input" name="email-input" placeholder="Enter email"><br><br>
+
+                        <label for="password-input">Password Input:</label>
+                        <input type="password" id="password-input" name="password-input" placeholder="Enter password"><br><br>
+
+                        <label for="number-input">Number Input:</label>
+                        <input type="number" id="number-input" name="number-input" min="1" max="10"><br><br>
+
+                        <label for="range-input">Range Slider:</label>
+                        <input type="range" id="range-input" name="range-input" min="0" max="100" value="75"><br><br>
+
+                        <label for="color-input">Color Picker:</label>
+                        <input type="color" id="color-input" name="color-input"><br><br>
+
+                        <label for="date-input">Date Picker:</label>
+                        <input type="date" id="date-input" name="date-input"><br><br>
+
+                        <label for="textarea">Textarea:</label><br>
+                        <textarea id="textarea" name="textarea" rows="4" cols="50" placeholder="Enter longer text here"></textarea><br><br>
+
+                        <label for="select">Select Dropdown:</label>
+                        <select id="select" name="select">
+                            <optgroup label="Group 1">
+                                <option value="">Select an option</option>
+                                <option value="1">Option 1</option>
+                            </optgroup>
+                            <optgroup label="Group 2">
+                                <option value="2">Option 2</option>
+                                <option value="3">Option 3</option>
+                            </optgroup>
+                        </select><br><br>
+
+                        <label>Radio Buttons:</label><br>
+                        <input type="radio" id="radio1" name="radio-group" value="1">
+                        <label for="radio1">Option 1</label><br>
+                        <input type="radio" id="radio2" name="radio-group" value="2">
+                        <label for="radio2">Option 2</label><br><br>
+
+                        <label>Checkboxes:</label><br>
+                        <input type="checkbox" id="checkbox1" name="checkbox1">
+                        <label for="checkbox1">Checkbox 1</label><br>
+                        <input type="checkbox" id="checkbox2" name="checkbox2">
+                        <label for="checkbox2">Checkbox 2</label><br><br>
+
+                        <label for="search-input">Search Input:</label>
+                        <input type="search" id="search-input" name="search-input" placeholder="Search..."><br><br>
+
+                        <label>Progress Indicator:</label><br>
+                        <progress value="75" max="100">75%</progress><br><br>
+
+                        <label>Meter Indicator:</label><br>
+                        <meter value="75" min="0" max="100" low="25" high="75" optimum="80">75%</meter><br><br>
+
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                        <button type="button">Regular Button</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <!-- Media -->
+            <section>
+                <h2>Media Elements</h2>
+                <figure>
+                    <img src="https://via.placeholder.com/300x200" alt="Placeholder Image">
+                    <figcaption>This is a caption for the image.</figcaption>
+                </figure>
+                <audio controls>
+                    <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+                    <track kind="captions" src="captions.vtt" srclang="en" label="English">
+                    Your browser does not support the audio element.
+                </audio>
+                <video controls width="300">
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    <track kind="subtitles" src="subtitles.vtt" srclang="en" label="English">
+                    Your browser does not support the video tag.
+                </video>
+                <picture>
+                    <source media="(min-width: 650px)" srcset="https://via.placeholder.com/600x400">
+                    <source media="(min-width: 465px)" srcset="https://via.placeholder.com/400x300">
+                    <img src="https://via.placeholder.com/300x200" alt="Responsive Image">
+                </picture>
+                <canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+                    Your browser does not support the canvas tag.
+                </canvas>
+            </section>
+
+            <!-- Structural and Semantic Elements -->
+            <section>
+                <h2>Structural and Semantic Elements</h2>
+                <article>
+                    <h3>Article Content</h3>
+                    <p>This is an independent piece of content, like a blog post or news article.</p>
+                </article>
+                <aside>
+                    <h3>Aside Content</h3>
+                    <p>This content is tangentially related to the main content.</p>
+                </aside>
+                <nav>
+                    <h3>Navigation Links</h3>
                     <ul>
-                        <li>Subitem 2.1</li>
-                        <li>Subitem 2.2</li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
-                </li>
-                <li>Item 3</li>
-            </ul>
-            <h3>Ordered List</h3>
-            <ol>
-                <li>First item</li>
-                <li>Second item
-                    <ol>
-                        <li>Subitem 2.1</li>
-                        <li>Subitem 2.2</li>
-                    </ol>
-                </li>
-                <li>Third item</li>
-            </ol>
-            <h3>Definition List</h3>
-            <dl>
-                <dt>Term 1</dt>
-                <dd>Definition for term 1.</dd>
-                <dt>Term 2</dt>
-                <dd>Definition for term 2.</dd>
-            </dl>
-        </section>
+                </nav>
+                <address>
+                    Contact us at: <a href="mailto:example@example.com">example@example.com</a><br>
+                    123 Example Street, Example City
+                </address>
+            </section>
 
-        <!-- Tables -->
-        <section>
-            <h2>Tables</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Header 1</th>
-                        <th>Header 2</th>
-                        <th>Header 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Row 1, Cell 1</td>
-                        <td>Row 1, Cell 2</td>
-                        <td>Row 1, Cell 3</td>
-                    </tr>
-                    <tr>
-                        <td>Row 2, Cell 1</td>
-                        <td>Row 2, Cell 2</td>
-                        <td>Row 2, Cell 3</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Footer content spanning all columns</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
+            <!-- Interactive Elements -->
+            <section>
+                <h2>Interactive Elements</h2>
+                <details>
+                    <summary>Click to expand details</summary>
+                    <p>This content is hidden until the summary is clicked. It's great for FAQs or additional info.</p>
+                </details>
+                <dialog open>
+                    <h3>Welcome to the Dialog</h3>
+                    <p>This is a modal dialog displayed using just HTML. Close it by clicking outside or using a form method.</p>
+                    <form method="dialog">
+                        <button>Close Dialog</button>
+                    </form>
+                </dialog>
+                <button onclick="alert('Surprise! Congratulations!')">Click me!</button>
+            </section>
 
-        <!-- Forms -->
-        <section>
-            <h2>Forms</h2>
-            <form>
-                <fieldset>
-                    <legend>Form Fieldset</legend>
-                    <label for="text-input">Text Input:</label>
-                    <input type="text" id="text-input" name="text-input" placeholder="Enter text"><br><br>
+            <!-- Miscellaneous -->
+            <section>
+                <h2>Miscellaneous</h2>
+                <hr>
+                <p>Above and below are horizontal rules (hr) for visual separation.</p>
+                <hr>
+                <p>Here's an abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+                <p>Some ruby text for annotations: <ruby>漢<rt>かん</rt></ruby></p>
+            </section>
+        </main>
 
-                    <label for="email-input">Email Input:</label>
-                    <input type="email" id="email-input" name="email-input" placeholder="Enter email"><br><br>
-
-                    <label for="password-input">Password Input:</label>
-                    <input type="password" id="password-input" name="password-input" placeholder="Enter password"><br><br>
-
-                    <label for="number-input">Number Input:</label>
-                    <input type="number" id="number-input" name="number-input" min="1" max="10"><br><br>
-
-                    <label for="textarea">Textarea:</label><br>
-                    <textarea id="textarea" name="textarea" rows="4" cols="50" placeholder="Enter longer text here"></textarea><br><br>
-
-                    <label for="select">Select Dropdown:</label>
-                    <select id="select" name="select">
-                        <option value="">Select an option</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select><br><br>
-
-                    <label>Radio Buttons:</label><br>
-                    <input type="radio" id="radio1" name="radio-group" value="1">
-                    <label for="radio1">Option 1</label><br>
-                    <input type="radio" id="radio2" name="radio-group" value="2">
-                    <label for="radio2">Option 2</label><br><br>
-
-                    <label>Checkboxes:</label><br>
-                    <input type="checkbox" id="checkbox1" name="checkbox1">
-                    <label for="checkbox1">Checkbox 1</label><br>
-                    <input type="checkbox" id="checkbox2" name="checkbox2">
-                    <label for="checkbox2">Checkbox 2</label><br><br>
-
-                    <button type="submit">Submit</button>
-                    <button type="reset">Reset</button>
-                </fieldset>
-            </form>
-        </section>
-
-        <!-- Media -->
-        <section>
-            <h2>Media</h2>
-            <figure>
-                <img src="https://via.placeholder.com/300x200" alt="Placeholder Image">
-                <figcaption>This is a caption for the image.</figcaption>
-            </figure>
-            <audio controls>
-                <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <video controls width="300">
-                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </section>
-
-        <!-- Miscellaneous -->
-        <section>
-            <h2>Miscellaneous</h2>
-            <hr>
-            <p>Above and below are horizontal rules (hr).</p>
-            <hr>
-            <details>
-                <summary>Click to expand details</summary>
-                <p>This content is hidden until the summary is clicked.</p>
-            </details>
-            <address>
-                Contact us at: <a href="mailto:example@example.com">example@example.com</a><br>
-                123 Example Street, Example City
-            </address>
-        </section>
+        <footer>
+            <p>That concludes our journey through HTML elements! There are even more out there—experimental, deprecated, web components, and beyond. I hope this showcase helps validate our styling across a wide range of semantic HTML.</p>
+        </footer>
     </div>
 </body>
 </html>
