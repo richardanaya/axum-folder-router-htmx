@@ -1,29 +1,105 @@
-<script
-  src="https://unpkg.com/htmx.org@2.0.4"
-  integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-  crossorigin="anonymous"
-></script>
-
-<div>
-  <p>Welcome to our website. What word would you like to shout</p>
-  <form
-    id="word-form"
-    method="POST"
-    action="/shout"
-    hx-post="/shout"
-    hx-target="#shouted-word"
-    hx-swap="innerHTML"
-    hx-trigger="submit"
-  >
-    <input
-      type="text"
-      name="word"
-      id="word"
-      placeholder="Enter a word to shout"
-      required
-    />
-    <button type="submit">Shout!</button>
-  </form>
-
-  <div id="shouted-word"></div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shout It Out</title>
+    <script
+        src="https://unpkg.com/htmx.org@2.0.4"
+        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+        crossorigin="anonymous"
+    ></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input {
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 12px;
+            font-size: 1em;
+            background: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background: #e55a50;
+            transform: translateY(-2px);
+        }
+        #shouted-word {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shout It Out!</h1>
+        <p>Welcome to our website. What word would you like to shout?</p>
+        <form
+            id="word-form"
+            method="POST"
+            action="/shout"
+            hx-post="/shout"
+            hx-target="#shouted-word"
+            hx-swap="innerHTML"
+            hx-trigger="submit"
+        >
+            <input
+                type="text"
+                name="word"
+                id="word"
+                placeholder="Enter a word to shout"
+                required
+            />
+            <button type="submit">Shout!</button>
+        </form>
+        <div id="shouted-word"></div>
+    </div>
+</body>
+</html>
