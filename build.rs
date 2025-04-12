@@ -2,13 +2,8 @@ use std::fs;
 use std::path::{Path, PathBuf};
 
 fn main() {
-    let api_root = Path::new("src/api");
-
-    if !api_root.exists() {
-        fs::create_dir_all(api_root).unwrap();
-    }
-
-    let dest_path = api_root.join("routes.rs");
+    let out_dir = env::var("OUT_DIR").unwrap();
+    let dest_path = Path::new(&out_dir).join("routes.rs");
     let mut code = String::new();
 
     fn visit_dirs(dir: &Path, base: &Path, code: &mut String) {
@@ -79,6 +74,6 @@ pub fn build_router() -> Router {
     visit_dirs(api_root, api_root, &mut code);
     code.push_str("    router\n}\n");
 
-    fs::write(&dest_path, code).unwrap();
+    fs::write(dest_path, code).unwrap();
     println!("cargo:rerun-if-changed=src/api");
 }
