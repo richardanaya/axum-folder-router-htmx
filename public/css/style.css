@@ -16,7 +16,7 @@ body {
 div {
     background: var(--gray-3);
     padding: var(--size-5);
-    border-radius: 0;
+    border-radius: var(--radius-2);
     box-shadow: var(--shadow-5);
     text-align: center;
     width: 100%;
@@ -48,7 +48,7 @@ input {
     padding: var(--size-3);
     font-size: var(--font-size-2);
     border: none;
-    border-radius: 0;
+    border-radius: var(--radius-1);
     background: var(--gray-1);
     color: var(--gray-9);
     transition: none;
@@ -68,7 +68,7 @@ button {
     background: var(--gray-6);
     color: var(--gray-0);
     border: none;
-    border-radius: 0;
+    border-radius: var(--radius-1);
     cursor: pointer;
     transition: none;
     font-family: var(--font-sans);
