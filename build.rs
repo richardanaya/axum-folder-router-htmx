@@ -1,6 +1,6 @@
 use std::env;
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 fn main() {
     let api_root = Path::new("src/api");
@@ -47,7 +47,7 @@ fn main() {
                     (axum_path, mod_name.trim_start_matches('_').to_string())
                 };
 
-                code.push_str(&format!("mod {};\n", mod_name));
+                code.push_str(&format!("mod {} {{ include!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/src/api/{}/route.rs\")); }}\n", mod_name, rel_dir.display()));
 
                 let methods = ["get", "post", "put", "delete", "patch"];
                 for method in &methods {
