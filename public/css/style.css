@@ -7,7 +7,7 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center; /* Changed from flex-start to center */
     padding: var(--size-5);
     font-family: var(--font-sans);
     font-weight: var(--font-weight-3);
