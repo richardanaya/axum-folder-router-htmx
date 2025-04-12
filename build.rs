@@ -50,11 +50,14 @@ fn main() {
                 code.push_str(&format!("mod {} {{ include!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/src/api/{}/route.rs\")); }}\n", mod_name, rel_dir.display()));
 
                 let methods = ["get", "post", "put", "delete", "patch"];
+                let route_contents = fs::read_to_string(&path).unwrap();
                 for method in &methods {
-                    code.push_str(&format!(
-                        "if {}::{} as usize != 0 {{ router = router.route(\"{}\", axum::routing::{}({}::{})); }}\n",
-                        mod_name, method, axum_path, method, mod_name, method
-                    ));
+                    if route_contents.contains(&format!("pub async fn {}(", method)) {
+                        code.push_str(&format!(
+                            "router = router.route(\"{}\", axum::routing::{}({}::{}));\n",
+                            axum_path, method, mod_name, method
+                        ));
+                    }
                 }
             }
         }
