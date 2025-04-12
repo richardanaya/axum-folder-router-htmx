@@ -399,19 +399,19 @@ button[variant="destructive"]:active {
 }
 
 button[variant="primary"] {
-    background: var(--blue-6);
+    background: var(--gray-9);
     box-shadow: var(--shadow-3);
     border: none;
     color: var(--gray-0);
 }
 
 button[variant="primary"]:hover {
-    background: var(--blue-7);
+    background: var(--gray-8);
     box-shadow: var(--shadow-4);
 }
 
 button[variant="primary"]:active {
-    background: var(--blue-5);
+    background: var(--gray-7);
 }
 
 div#shouted-word {
