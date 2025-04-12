@@ -152,6 +152,67 @@ input[type="range"]::-moz-range-track {
     border-radius: 0;
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: var(--size-4);
+    height: var(--size-4);
+    background: var(--gray-1);
+    border: 1px solid var(--gray-5);
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: var(--size-2);
+    position: relative;
+}
+
+input[type="radio"]:checked::after,
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    background: var(--gray-7);
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+}
+
+input[type="radio"] {
+    border-radius: 50%;
+}
+
+input[type="radio"]:checked::after {
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked::after {
+    background: var(--gray-7) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'></polyline></svg>");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--gray-7);
+    font-size: var(--font-size-2);
+    margin-bottom: var(--size-1);
+}
+
+label:hover input[type="radio"],
+label:hover input[type="checkbox"] {
+    border-color: var(--gray-7);
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--gray-5);
+}
+
 input:focus {
     outline: none;
     box-shadow: var(--shadow-3);
