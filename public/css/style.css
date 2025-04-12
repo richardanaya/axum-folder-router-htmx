@@ -359,13 +359,27 @@ button {
 
 button:hover {
     background: var(--gray-7);
-    transform: scale(1.05);
     box-shadow: var(--shadow-4);
 }
 
 button:active {
     background: var(--gray-5);
-    transform: scale(0.95);
+}
+
+button[variant="ghost"] {
+    background: transparent;
+    box-shadow: var(--shadow-3);
+    border: none;
+    color: var(--gray-9);
+}
+
+button[variant="ghost"]:hover {
+    background: var(--gray-2);
+    box-shadow: var(--shadow-4);
+}
+
+button[variant="ghost"]:active {
+    background: var(--gray-3);
 }
 
 div#shouted-word {
