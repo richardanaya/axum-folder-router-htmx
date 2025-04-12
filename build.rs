@@ -52,8 +52,8 @@ fn main() {
                 let methods = ["get", "post", "put", "delete", "patch"];
                 for method in &methods {
                     code.push_str(&format!(
-                        "if let Some(f) = maybe_fn({}::{}) {{ router = router.route(\"{}\", axum::routing::{}(f)); }}\n",
-                        mod_name, method, axum_path, method
+                        "if {}::{} as usize != 0 {{ router = router.route(\"{}\", axum::routing::{}({}::{})); }}\n",
+                        mod_name, method, axum_path, method, mod_name, method
                     ));
                 }
             }
