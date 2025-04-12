@@ -9,7 +9,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: var(--size-3);
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-3);
 }
 
 div {
@@ -51,7 +52,8 @@ input {
     background: var(--gray-1);
     color: var(--gray-9);
     transition: none;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-3);
     box-shadow: var(--shadow-2);
 }
 
@@ -69,7 +71,8 @@ button {
     border-radius: 0;
     cursor: pointer;
     transition: none;
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-4);
     text-transform: uppercase;
     box-shadow: var(--shadow-3);
 }
@@ -85,7 +88,7 @@ button:active {
 div > div {
     margin-top: var(--size-4);
     font-size: var(--font-size-5);
-    font-weight: var(--font-weight-7);
+    font-weight: var(--font-weight-4);
     color: var(--gray-9);
     background: none;
     padding: 0;
