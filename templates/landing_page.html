@@ -12,11 +12,21 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <div> {# Changed main to div to match style #}
-      <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--size-4);">
-        <p>Welcome, {{ username }}!</p> {# Display username #}
-        <form method="POST" action="/logout" style="margin: 0;"> {# Logout form #}
-            <button type="submit" variant="ghost">Logout</button>
+    <div variant="card">
+      {# Changed main to div to match style #}
+      <header
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: var(--size-4);
+        "
+      >
+        <p>Welcome, {{ username }}!</p>
+        {# Display username #}
+        <form method="POST" action="/logout" style="margin: 0">
+          {# Logout form #}
+          <button type="submit" variant="ghost">Logout</button>
         </form>
       </header>
 
@@ -42,9 +52,10 @@
       </form>
       <div id="shouted-word"></div>
 
-      <hr style="margin: var(--size-6) 0;">
-      <p><a href="/ui">View UI Kitchen Sink</a></p> {# Link to UI page #}
-
-    </div> {# Close div #}
+      <hr style="margin: var(--size-6) 0" />
+      <p><a href="/ui">View UI Kitchen Sink</a></p>
+      {# Link to UI page #}
+    </div>
+    {# Close div #}
   </body>
 </html>
