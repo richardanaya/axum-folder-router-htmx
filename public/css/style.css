@@ -97,3 +97,11 @@ div#shouted-word {
     text-transform: uppercase;
     text-align: center;
 }
+
+section {
+    margin-bottom: var(--size-6);
+}
+
+section:last-of-type {
+    margin-bottom: 0;
+}
