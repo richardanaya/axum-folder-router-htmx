@@ -232,12 +232,12 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background: var(--green-6);
+    background: var(--gray-6);
     border-radius: var(--radius-1);
 }
 
 progress::-moz-progress-bar {
-    background: var(--green-6);
+    background: var(--gray-6);
     border-radius: var(--radius-1);
 }
 
@@ -260,17 +260,17 @@ meter::-webkit-meter-bar {
 }
 
 meter::-webkit-meter-optimum-value {
-    background: var(--green-6);
+    background: var(--gray-6);
     border-radius: var(--radius-1);
 }
 
 meter::-webkit-meter-suboptimum-value {
-    background: var(--yellow-6);
+    background: var(--gray-5);
     border-radius: var(--radius-1);
 }
 
 meter::-webkit-meter-even-less-good-value {
-    background: var(--red-6);
+    background: var(--gray-4);
     border-radius: var(--radius-1);
 }
 
@@ -279,15 +279,15 @@ meter::-moz-meter-bar {
 }
 
 meter:-moz-meter-optimum::-moz-meter-bar {
-    background: var(--green-6);
+    background: var(--gray-6);
 }
 
 meter:-moz-meter-sub-optimum::-moz-meter-bar {
-    background: var(--yellow-6);
+    background: var(--gray-5);
 }
 
 meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-    background: var(--red-6);
+    background: var(--gray-4);
 }
 
 input:focus {
