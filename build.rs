@@ -51,13 +51,21 @@ fn main() {
 
                 let methods = ["get", "post", "put", "delete", "patch"];
                 let route_contents = fs::read_to_string(&path).unwrap();
+                let mut builder = String::new();
                 for method in &methods {
                     if route_contents.contains(&format!("pub async fn {}(", method)) {
-                        code.push_str(&format!(
-                            "router = router.route(\"{}\", axum::routing::{}({}::{}));\n",
-                            axum_path, method, mod_name, method
-                        ));
+                        if builder.is_empty() {
+                            builder.push_str(&format!("axum::routing::{}({}::{})", method, mod_name, method));
+                        } else {
+                            builder.push_str(&format!(".{}({}::{})", method, mod_name, method));
+                        }
                     }
+                }
+                if !builder.is_empty() {
+                    code.push_str(&format!(
+                        "router = router.route(\"{}\", {});\n",
+                        axum_path, builder
+                    ));
                 }
             }
         }
