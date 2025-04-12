@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shout It Out</title>
     <script
-        src="https://unpkg.com/htmx.org@2.0.4"
-        integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-        crossorigin="anonymous"
+      src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+      crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Shout It Out!</h1>
-        <p>Welcome to our website. What word would you like to shout?</p>
-        <form
-            id="word-form"
-            method="POST"
-            action="/shout"
-            hx-post="/shout"
-            hx-target="#shouted-word"
-            hx-swap="innerHTML"
-            hx-trigger="submit"
-        >
-            <input
-                type="text"
-                name="word"
-                id="word"
-                placeholder="Enter a word to shout"
-                required
-            />
-            <button type="submit">Shout!</button>
-        </form>
-        <div id="shouted-word"></div>
-    </div>
-</body>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Shout It Out!</h1>
+      <p>Welcome to our website. What word would you like to shout?</p>
+      <form
+        id="word-form"
+        method="POST"
+        action="/shout"
+        hx-post="/shout"
+        hx-target="#shouted-word"
+        hx-swap="innerHTML"
+        hx-trigger="submit"
+      >
+        <input
+          type="text"
+          name="word"
+          id="word"
+          placeholder="Enter a word to shout"
+          required
+        />
+        <button type="submit">Shout!</button>
+      </form>
+      <div id="shouted-word"></div>
+    </main>
+  </body>
 </html>
