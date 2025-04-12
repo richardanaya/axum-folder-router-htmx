@@ -1,11 +1,11 @@
-// src/api/foo/route.rs
+use askama::Template;
 use axum::http::StatusCode;
-use axum::response::IntoResponse;
+use axum::response::{Html, IntoResponse};
+
+#[derive(Template)]
+#[template(path = "landing_page.html")]
+struct LandingPage {}
 
 pub async fn get() -> impl IntoResponse {
-    (StatusCode::OK, "GET foo")
-}
-
-pub async fn post() -> impl IntoResponse {
-    (StatusCode::OK, "POST foo")
+    Html(LandingPage {}.render().unwrap()).into_response()
 }

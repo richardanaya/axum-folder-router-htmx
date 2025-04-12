@@ -1,4 +1,5 @@
 mod api_routes {
+    // This is genearted by build.rs
     include!(concat!(env!("OUT_DIR"), "/routes.rs"));
 }
 

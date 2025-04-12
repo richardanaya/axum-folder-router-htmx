@@ -7,7 +7,6 @@ fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
     let dest_path = Path::new(&out_dir).join("routes.rs");
     let mut code = String::new();
-    code.push_str("#![allow(non_snake_case)]\n");
 
     fn visit_dirs(dir: &Path, base: &Path, code: &mut String) {
         for entry in fs::read_dir(dir).unwrap() {
@@ -34,7 +33,7 @@ fn main() {
                                 axum_path.push_str(&format!("/*{}", param));
                                 mod_name.push_str(&format!("__{}", param));
                             } else {
-                                axum_path.push_str(&format!("/:{}", inner));
+                                axum_path.push_str(&format!("/{{{}}}", inner));
                                 mod_name.push_str(&format!("__{}", inner));
                             }
                         } else {
@@ -48,15 +47,18 @@ fn main() {
                     (axum_path, mod_name.trim_start_matches('_').to_string())
                 };
 
-                code.push_str(&format!("mod {} {{ include!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/src/api/{}/route.rs\")); }}\n", mod_name, rel_dir.display()));
+                code.push_str(&format!("#[allow(warnings)]\nmod {} {{ include!(concat!(env!(\"CARGO_MANIFEST_DIR\"), \"/src/api/{}/route.rs\")); }}\n", mod_name, rel_dir.display()));
 
-                let methods = ["get", "post", "put", "delete", "patch"];
+                let methods = ["get", "post", "put", "delete", "patch", "head", "options"];
                 let route_contents = fs::read_to_string(&path).unwrap();
                 let mut builder = String::new();
                 for method in &methods {
                     if route_contents.contains(&format!("pub async fn {}(", method)) {
                         if builder.is_empty() {
-                            builder.push_str(&format!("axum::routing::{}({}::{})", method, mod_name, method));
+                            builder.push_str(&format!(
+                                "axum::routing::{}({}::{})",
+                                method, mod_name, method
+                            ));
                         } else {
                             builder.push_str(&format!(".{}({}::{})", method, mod_name, method));
                         }
@@ -76,6 +78,7 @@ fn main() {
         r#"
 use axum::Router;
 
+#[allow(warnings)]
 fn maybe_fn<F>(f: F) -> Option<F> {
     Some(f)
 }

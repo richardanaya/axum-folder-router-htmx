@@ -1,0 +1,29 @@
+<script
+  src="https://unpkg.com/htmx.org@2.0.4"
+  integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+  crossorigin="anonymous"
+></script>
+
+<div>
+  <p>Welcome to our website. What word would you like to shout</p>
+  <form
+    id="word-form"
+    method="POST"
+    action="/shout"
+    hx-post="/shout"
+    hx-target="#shouted-word"
+    hx-swap="innerHTML"
+    hx-trigger="submit"
+  >
+    <input
+      type="text"
+      name="word"
+      id="word"
+      placeholder="Enter a word to shout"
+      required
+    />
+    <button type="submit">Shout!</button>
+  </form>
+
+  <div id="shouted-word"></div>
+</div>
