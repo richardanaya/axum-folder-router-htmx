@@ -79,6 +79,18 @@ p {
     color: var(--gray-7);
 }
 
+blockquote {
+    margin-bottom: var(--size-5);
+}
+
+ul {
+    margin-bottom: var(--size-5);
+}
+
+ol {
+    margin-bottom: var(--size-5);
+}
+
 form {
     display: flex;
     flex-direction: column;
