@@ -19,7 +19,6 @@ div {
     padding: var(--size-5);
     border-radius: var(--radius-2);
     box-shadow: var(--shadow-5);
-    text-align: center;
     width: 100%;
     max-width: 800px;
 }
