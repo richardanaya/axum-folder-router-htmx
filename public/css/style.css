@@ -119,12 +119,13 @@ input[type="range"] {
     box-shadow: none;
     width: 100%;
     max-width: 300px;
-    margin: var(--size-3) auto;
+    margin: var(--size-1) 0;
     display: block;
     -webkit-appearance: none;
     height: var(--size-2);
     background: var(--gray-4);
     border-radius: 0;
+    vertical-align: middle;
 }
 
 input[type="range"]::-webkit-slider-thumb {
