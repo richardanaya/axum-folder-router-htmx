@@ -213,6 +213,83 @@ input[type="checkbox"]:focus {
     box-shadow: 0 0 0 2px var(--gray-5);
 }
 
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    max-width: 300px;
+    height: var(--size-2);
+    border: none;
+    background: var(--gray-4);
+    border-radius: var(--radius-1);
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background: var(--gray-4);
+    border-radius: var(--radius-1);
+}
+
+progress::-webkit-progress-value {
+    background: var(--green-6);
+    border-radius: var(--radius-1);
+}
+
+progress::-moz-progress-bar {
+    background: var(--green-6);
+    border-radius: var(--radius-1);
+}
+
+meter {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    max-width: 300px;
+    height: var(--size-2);
+    border: none;
+    background: var(--gray-4);
+    border-radius: var(--radius-1);
+    overflow: hidden;
+}
+
+meter::-webkit-meter-bar {
+    background: var(--gray-4);
+    border-radius: var(--radius-1);
+}
+
+meter::-webkit-meter-optimum-value {
+    background: var(--green-6);
+    border-radius: var(--radius-1);
+}
+
+meter::-webkit-meter-suboptimum-value {
+    background: var(--yellow-6);
+    border-radius: var(--radius-1);
+}
+
+meter::-webkit-meter-even-less-good-value {
+    background: var(--red-6);
+    border-radius: var(--radius-1);
+}
+
+meter::-moz-meter-bar {
+    border-radius: var(--radius-1);
+}
+
+meter:-moz-meter-optimum::-moz-meter-bar {
+    background: var(--green-6);
+}
+
+meter:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: var(--yellow-6);
+}
+
+meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: var(--red-6);
+}
+
 input:focus {
     outline: none;
     box-shadow: var(--shadow-3);
