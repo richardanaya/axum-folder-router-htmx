@@ -1,5 +1,5 @@
-@import "https://unpkg.com/open-props@1.0.0-alpha.6/open-props.min.css";
-@import "https://unpkg.com/open-props@1.0.0-alpha.6/normalize.min.css";
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
 
 body {
     background: var(--gradient-6);
