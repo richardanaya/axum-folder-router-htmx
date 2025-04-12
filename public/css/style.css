@@ -398,6 +398,22 @@ button[variant="destructive"]:active {
     background: var(--red-5);
 }
 
+button[variant="primary"] {
+    background: var(--blue-6);
+    box-shadow: var(--shadow-3);
+    border: none;
+    color: var(--gray-0);
+}
+
+button[variant="primary"]:hover {
+    background: var(--blue-7);
+    box-shadow: var(--shadow-4);
+}
+
+button[variant="primary"]:active {
+    background: var(--blue-5);
+}
+
 div#shouted-word {
     margin-top: var(--size-4);
     font-size: var(--font-size-5);
