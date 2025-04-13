@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Layout</title>
-    <!-- Link to your CSS file -->
     <link rel="stylesheet" href="/css/global.css" />
     <style>
       /* Basic layout styles for demonstration */
@@ -135,96 +134,63 @@
     </style>
   </head>
   <body>
-    <!-- skip-to-content link (references main#app-main-content) -->
     <a href="#app-main-content">Skip to main content</a>
-    <!-- Add other skip links here if needed -->
 
-    <!-- banner -->
     <div role="banner">
-      <!-- Banner content goes here (e.g., site-wide announcements) -->
-      <!-- This section is hidden if empty -->
     </div>
 
-    <!-- header -->
     <header>
-      <!-- Header content goes here (e.g., logo, site title, main actions) -->
-      <!-- This section is hidden if empty -->
     </header>
 
-    <!-- subheader -->
     <div role="navigation" aria-label="Breadcrumb">
-      <!-- Subheader content goes here (e.g., breadcrumbs) -->
-      <!-- This section is hidden if empty -->
     </div>
 
-    <!-- menu OR navigation -->
-    <nav> <!-- Removed class="page-nav" -->
-      <!-- If using the 'menu' slot, custom content goes here -->
-      <!-- If using default navigation slots: -->
-      <div> <!-- Removed class="navigation-toggle" -->
+    <nav>
+      <div>
         <button type="button" aria-label="Toggle Navigation">
           Menu
-          <span>☰</span> <!-- Removed ID -->
-          <!-- Or slot your custom icon here -->
+          <span>☰</span>
         </button>
-        <!-- Slot your custom toggle button here -->
       </div>
-      <header> <!-- Removed ID -->
-        <!-- Navigation header content -->
+      <header>
         Navigation Title
       </header>
-      <nav aria-label="Main Navigation"> <!-- Removed ID, inner nav element -->
-        <!-- Navigation links/content -->
+      <nav aria-label="Main Navigation">
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
-      <footer> <!-- Removed ID -->
-        <!-- Navigation footer content -->
+      <footer>
         Nav Footer Info
       </footer>
-      <!-- This section is hidden if empty -->
     </nav>
 
-    <!-- main -->
-    <main id="app-main-content"> <!-- Keep ID for skip link target -->
-      <header> <!-- Removed ID -->
-        <!-- Main content header (e.g., page title) -->
+    <main id="app-main-content">
+      <header>
         <h1>Page Title</h1>
       </header>
 
-      <!-- The page's main content -->
       <p>This is the primary content area of the page.</p>
       <p>More content follows...</p>
-      <!-- ... -->
 
-      <footer> <!-- Removed ID -->
-        <!-- Main content footer (e.g., related links, actions specific to main content) -->
+      <footer>
         End of Main Content Section
       </footer>
     </main>
 
-    <!-- aside -->
-    <aside> <!-- Removed class="page-aside" -->
-      <!-- Aside content goes here (e.g., table of contents, related info, ads) -->
+    <aside>
       <h3>Table of Contents</h3>
       <ul>
         <li><a href="#section1">Section 1</a></li>
         <li><a href="#section2">Section 2</a></li>
       </ul>
-      <!-- This section is hidden if empty -->
     </aside>
 
-    <!-- footer -->
-    <footer> <!-- Removed class="page-footer" -->
-      <!-- Footer content goes here (e.g., copyright, contact info, site map links) -->
+    <footer>
       <p>&copy; 2025 Your Website. All rights reserved.</p>
-      <!-- This section is hidden if empty -->
     </footer>
 
-    <!-- Add your JS scripts here if needed -->
-    <!-- <script src="/js/app.js"></script> -->
   </body>
 </html>
