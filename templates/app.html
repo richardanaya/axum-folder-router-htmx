@@ -27,21 +27,60 @@
 
       /* Assign grid areas using semantic elements and attribute selectors */
       /* Using attribute selector for banner */
-      body > div[role="banner"] { grid-area: banner; background-color: lightblue; padding: 10px; }
+      body > div[role="banner"] {
+        grid-area: banner;
+        background-color: lightblue;
+        padding: 10px;
+      }
       /* Direct child selector for header */
-      body > header { grid-area: header; background-color: lightcoral; padding: 10px; }
+      body > header {
+        grid-area: header;
+        background-color: lightcoral;
+        padding: 10px;
+      }
       /* Using attribute selector for subheader */
-      body > div[role="navigation"][aria-label="Breadcrumb"] { grid-area: subheader; background-color: lightgoldenrodyellow; padding: 10px; }
+      body > div[role="navigation"][aria-label="Breadcrumb"] {
+        grid-area: subheader;
+        background-color: lightgoldenrodyellow;
+        padding: 10px;
+      }
       /* Targeting the main navigation element (assuming it's the first direct nav child of body) */
-      body > nav { grid-area: nav; background-color: lightgreen; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky nav */
+      body > nav {
+        grid-area: nav;
+        background-color: lightgreen;
+        padding: 10px;
+        position: sticky;
+        top: 10px;
+        align-self: start;
+      } /* Sticky nav */
       /* Targeting main element */
-      body > main { grid-area: main; background-color: white; padding: 10px; }
+      body > main {
+        grid-area: main;
+        background-color: white;
+        padding: 10px;
+      }
       /* Targeting the aside element */
-      body > aside { grid-area: aside; background-color: lightpink; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky aside */
+      body > aside {
+        grid-area: aside;
+        background-color: lightpink;
+        padding: 10px;
+        position: sticky;
+        top: 10px;
+        align-self: start;
+      } /* Sticky aside */
       /* Targeting footer within main */
-      main > footer { grid-area: main-footer; background-color: lightgray; padding: 10px; }
+      main > footer {
+        grid-area: main-footer;
+        background-color: lightgray;
+        padding: 10px;
+      }
       /* Targeting the main page footer (assuming it's the last direct child footer of body) */
-      body > footer { grid-area: footer; background-color: lightslategray; color: white; padding: 10px; }
+      body > footer {
+        grid-area: footer;
+        background-color: lightslategray;
+        color: white;
+        padding: 10px;
+      }
 
       /* Hide empty sections using updated selectors */
       body > div[role="banner"]:empty,
@@ -57,7 +96,8 @@
 
       /* Basic styling for nav elements using updated selectors */
       /* Target header/footer inside the main nav */
-      body > nav > header, body > nav > footer {
+      body > nav > header,
+      body > nav > footer {
         font-weight: bold;
         margin-bottom: 5px;
         margin-top: 5px;
@@ -69,15 +109,15 @@
         margin: 0;
       }
       /* Target links inside the inner nav */
-       body > nav > nav[aria-label="Main Navigation"] li a {
+      body > nav > nav[aria-label="Main Navigation"] li a {
         display: block;
         padding: 5px;
         text-decoration: none;
         color: inherit;
-       }
-       body > nav > nav[aria-label="Main Navigation"] li a:hover {
-        background-color: rgba(0,0,0,0.1);
-       }
+      }
+      body > nav > nav[aria-label="Main Navigation"] li a:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
 
       /* Skip link styling - targets the specific link */
       body > a[href="#app-main-content"] {
@@ -99,7 +139,8 @@
         /* Add styles for your toggle button */
         padding: 5px 10px;
       }
-      body > nav > div > button span { /* Target span inside toggle button */
+      body > nav > div > button span {
+        /* Target span inside toggle button */
         /* Style for the icon within the toggle */
         display: inline-block;
         width: 1em;
@@ -125,25 +166,20 @@
           grid-template-rows: auto; /* Adjust rows */
         }
         /* Target main nav and aside directly */
-        body > nav, body > aside {
-            position: static; /* Remove sticky on mobile */
+        body > nav,
+        body > aside {
+          position: static; /* Remove sticky on mobile */
         }
         /* Add logic to show/hide nav with toggle button */
       }
-
     </style>
   </head>
   <body>
-    <a href="#app-main-content">Skip to main content</a>
+    <div role="banner"></div>
 
-    <div role="banner">
-    </div>
+    <header></header>
 
-    <header>
-    </header>
-
-    <div role="navigation" aria-label="Breadcrumb">
-    </div>
+    <div role="navigation" aria-label="Breadcrumb"></div>
 
     <nav>
       <div>
@@ -152,19 +188,15 @@
           <span>☰</span>
         </button>
       </div>
-      <header>
-        Navigation Title
-      </header>
+      <header>Navigation Title</header>
       <nav aria-label="Main Navigation">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
-      <footer>
-        Nav Footer Info
-      </footer>
+      <footer>Nav Footer Info</footer>
     </nav>
 
     <main id="app-main-content">
@@ -175,9 +207,7 @@
       <p>This is the primary content area of the page.</p>
       <p>More content follows...</p>
 
-      <footer>
-        End of Main Content Section
-      </footer>
+      <footer>End of Main Content Section</footer>
     </main>
 
     <aside>
@@ -191,6 +221,5 @@
     <footer>
       <p>&copy; 2025 Your Website. All rights reserved.</p>
     </footer>
-
   </body>
 </html>
