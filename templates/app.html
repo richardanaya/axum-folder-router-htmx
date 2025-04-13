@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Layout</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/css/global.css" />
+    <style>
+      /* Basic layout styles for demonstration */
+      body {
+        display: grid;
+        grid-template-areas:
+          "banner banner banner"
+          "header header header"
+          "subheader subheader subheader"
+          "nav main aside"
+          "nav main-footer aside"
+          "footer footer footer";
+        grid-template-rows: auto auto auto 1fr auto auto;
+        grid-template-columns: 200px 1fr 200px;
+        min-height: 100vh;
+        gap: 10px; /* Add some spacing */
+        margin: 0; /* Remove default body margin */
+        background-color: #f0f0f0; /* Light background for contrast */
+      }
+
+      /* Assign grid areas */
+      #app-banner { grid-area: banner; background-color: lightblue; padding: 10px; }
+      #app-header { grid-area: header; background-color: lightcoral; padding: 10px; }
+      #app-subheader { grid-area: subheader; background-color: lightgoldenrodyellow; padding: 10px; }
+      #app-menu-or-nav { grid-area: nav; background-color: lightgreen; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky nav */
+      #app-main-content { grid-area: main; background-color: white; padding: 10px; }
+      #app-aside { grid-area: aside; background-color: lightpink; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky aside */
+      #app-main-footer { grid-area: main-footer; background-color: lightgray; padding: 10px; }
+      #app-footer { grid-area: footer; background-color: lightslategray; color: white; padding: 10px; }
+
+      /* Hide empty sections */
+      #app-banner:empty,
+      #app-header:empty,
+      #app-subheader:empty,
+      #app-menu-or-nav:empty,
+      #app-aside:empty,
+      #app-main-header:empty,
+      #app-main-footer:empty,
+      #app-footer:empty {
+        display: none;
+      }
+
+      /* Basic styling for nav elements */
+      #app-menu-or-nav header, #app-menu-or-nav footer {
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+      #app-menu-or-nav nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+       #app-menu-or-nav nav li a {
+        display: block;
+        padding: 5px;
+        text-decoration: none;
+        color: inherit;
+       }
+       #app-menu-or-nav nav li a:hover {
+        background-color: rgba(0,0,0,0.1);
+       }
+
+      /* Placeholder for skip link */
+      #skip-to-content a {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      #skip-to-content a:focus {
+        position: static;
+        width: auto;
+        height: auto;
+      }
+
+      /* Placeholder for nav toggle */
+      #navigation-toggle button {
+        /* Add styles for your toggle button */
+        padding: 5px 10px;
+      }
+      #navigation-toggle-icon {
+        /* Style for the icon within the toggle */
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        /* background: url(...) or SVG */
+        vertical-align: middle;
+        margin-left: 5px;
+      }
+
+      /* Responsive adjustments (example) */
+      @media (max-width: 768px) {
+        body {
+          grid-template-areas:
+            "banner"
+            "header"
+            "subheader"
+            "nav" /* Stack nav on mobile */
+            "main"
+            "main-footer"
+            "aside" /* Stack aside on mobile */
+            "footer";
+          grid-template-columns: 1fr;
+          grid-template-rows: auto; /* Adjust rows */
+        }
+        #app-menu-or-nav, #app-aside {
+            position: static; /* Remove sticky on mobile */
+        }
+        /* Add logic to show/hide nav with toggle button */
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- skip-to-content -->
+    <div id="skip-to-content">
+      <a href="#app-main-content">Skip to main content</a>
+      <!-- Add other skip links here if needed -->
+    </div>
+
+    <!-- banner -->
+    <div id="app-banner" role="banner">
+      <!-- Banner content goes here (e.g., site-wide announcements) -->
+      <!-- This section is hidden if empty -->
+    </div>
+
+    <!-- header -->
+    <header id="app-header">
+      <!-- Header content goes here (e.g., logo, site title, main actions) -->
+      <!-- This section is hidden if empty -->
+    </header>
+
+    <!-- subheader -->
+    <div id="app-subheader" role="navigation" aria-label="Breadcrumb">
+      <!-- Subheader content goes here (e.g., breadcrumbs) -->
+      <!-- This section is hidden if empty -->
+    </div>
+
+    <!-- menu OR navigation -->
+    <div id="app-menu-or-nav">
+      <!-- If using the 'menu' slot, custom content goes here -->
+      <!-- If using default navigation slots: -->
+      <div id="navigation-toggle">
+        <button type="button" aria-label="Toggle Navigation">
+          Menu
+          <span id="navigation-toggle-icon">☰</span> <!-- Default icon placeholder -->
+          <!-- Or slot your custom icon here -->
+        </button>
+        <!-- Slot your custom toggle button here -->
+      </div>
+      <header id="navigation-header">
+        <!-- Navigation header content -->
+        Navigation Title
+      </header>
+      <nav id="navigation" aria-label="Main Navigation">
+        <!-- Navigation links/content -->
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <footer id="navigation-footer">
+        <!-- Navigation footer content -->
+        Nav Footer Info
+      </footer>
+      <!-- This section is hidden if empty -->
+    </div>
+
+    <!-- main -->
+    <main id="app-main-content">
+      <header id="main-header">
+        <!-- Main content header (e.g., page title) -->
+        <h1>Page Title</h1>
+      </header>
+
+      <!-- The page's main content -->
+      <p>This is the primary content area of the page.</p>
+      <p>More content follows...</p>
+      <!-- ... -->
+
+      <footer id="main-footer">
+        <!-- Main content footer (e.g., related links, actions specific to main content) -->
+        End of Main Content Section
+      </footer>
+    </main>
+
+    <!-- aside -->
+    <aside id="app-aside">
+      <!-- Aside content goes here (e.g., table of contents, related info, ads) -->
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#section1">Section 1</a></li>
+        <li><a href="#section2">Section 2</a></li>
+      </ul>
+      <!-- This section is hidden if empty -->
+    </aside>
+
+    <!-- footer -->
+    <footer id="app-footer">
+      <!-- Footer content goes here (e.g., copyright, contact info, site map links) -->
+      <p>&copy; 2025 Your Website. All rights reserved.</p>
+      <!-- This section is hidden if empty -->
+    </footer>
+
+    <!-- Add your JS scripts here if needed -->
+    <!-- <script src="/js/app.js"></script> -->
+  </body>
+</html>
