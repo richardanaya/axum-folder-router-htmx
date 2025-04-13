@@ -443,3 +443,11 @@ section {
 section:last-of-type {
   margin-bottom: 0;
 }
+
+dialog {
+  z-index: 10000;
+}
+
+details {
+  margin-bottom: var(--size-5);
+}
