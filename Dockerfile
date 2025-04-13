@@ -1,36 +1,19 @@
 # ---- Builder Stage ----
 # Use a specific Rust version for consistency
-FROM rust:1.79 as builder
+FROM rust:1.83 as builder
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the manifests, lock file, source code, build script, and templates
-COPY Cargo.toml Cargo.lock ./
-COPY src ./src
-COPY build.rs ./build.rs
-COPY templates ./templates
+# copy everything so we can build
+
+COPY . .
+
 
 # Build the application binary in release mode
+# This will reuse the cached dependency layer
 # Ensure the binary name 'axum-folder' matches your Cargo.toml [package].name
 RUN cargo build --release --bin axum-folder
-
-# ---- Runtime Stage ----
-# Use a minimal Debian image for the final stage
-FROM debian:bullseye-slim
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the compiled binary from the builder stage
-# Ensure the binary name 'axum-folder' matches your Cargo.toml [package].name
-COPY --from=builder /app/target/release/axum-folder /app/axum-folder
-
-# Copy the public assets folder required by the application (from build context)
-COPY public ./public
-
-# Copy the templates folder required by Askama at runtime (from builder stage)
-COPY --from=builder /app/templates ./templates
 
 # Set the default port the application will listen on.
 # Your main.rs reads this environment variable.
@@ -43,4 +26,4 @@ EXPOSE $PORT
 
 # Command to run the application when the container starts
 # Ensure the binary name 'axum-folder' matches your Cargo.toml [package].name
-CMD ["/app/axum-folder"]
+CMD ["/app/target/release/axum-folder"]

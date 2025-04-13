@@ -67,6 +67,7 @@
         position: sticky;
         top: 10px;
         align-self: start;
+        height: 100%; /* Full height for sticky aside */
       } /* Sticky aside */
       /* Targeting footer within main */
       main > footer {
@@ -119,21 +120,6 @@
         background-color: rgba(0, 0, 0, 0.1);
       }
 
-      /* Skip link styling - targets the specific link */
-      body > a[href="#app-main-content"] {
-        position: absolute;
-        left: -10000px;
-        top: auto;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-      }
-      body > a[href="#app-main-content"]:focus {
-        position: static;
-        width: auto;
-        height: auto;
-      }
-
       /* Nav toggle styling - targets button inside a div inside the main nav */
       body > nav > div > button {
         /* Add styles for your toggle button */
@@ -148,6 +134,12 @@
         /* background: url(...) or SVG */
         vertical-align: middle;
         margin-left: 5px;
+      }
+
+      body > nav,
+      body > aside,
+      body > main {
+        height: 100%;
       }
 
       /* Responsive adjustments (example) using updated selectors */
@@ -175,19 +167,15 @@
     </style>
   </head>
   <body>
-    <a href="#app-main-content">Skip to main content</a>
-
-    <div role="banner">
-      <p>Site-wide Banner Announcement!</p>
-    </div>
+    <div role="banner">Site-wide Banner Announcement!</div>
 
     <header>
       <h1>Site Title / Logo</h1>
-      <p>Main Header Content</p>
+      Main Header Content
     </header>
 
     <div role="navigation" aria-label="Breadcrumb">
-      <p>Home / Section / Current Page</p>
+      Home / Section / Current Page
     </div>
 
     <nav>
@@ -208,7 +196,7 @@
       <footer>Nav Footer Info</footer>
     </nav>
 
-    <main id="app-main-content">
+    <main>
       <header>
         <h1>Page Title</h1>
       </header>
@@ -227,8 +215,6 @@
       </ul>
     </aside>
 
-    <footer>
-      <p>&copy; 2025 Your Website. All rights reserved.</p>
-    </footer>
+    <footer>&copy; 2025 Your Website. All rights reserved.</footer>
   </body>
 </html>

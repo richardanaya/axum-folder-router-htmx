@@ -1,0 +1,5 @@
+.env
+fly.toml
+.git/
+target
+.github
