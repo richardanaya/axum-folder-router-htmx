@@ -5,25 +5,13 @@ FROM rust:1.79 as builder
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the Cargo manifest and lock file
-# This allows Docker to cache dependencies separately from code changes
+# Copy the manifests, lock file, source code, build script, and templates
 COPY Cargo.toml Cargo.lock ./
-
-# Build dependencies first (using a dummy main.rs and build.rs)
-# This layer is cached if only the source code changes later
-RUN mkdir src && echo "fn main() {}" > src/main.rs
-RUN touch build.rs
-# Ensure the binary name 'axum-folder' matches your Cargo.toml [package].name
-RUN cargo build --release --bin axum-folder
-RUN rm -rf src build.rs # Clean up dummy files
-
-# Copy the actual source code, build script, and templates
 COPY src ./src
 COPY build.rs ./build.rs
 COPY templates ./templates
 
 # Build the application binary in release mode
-# This will reuse the cached dependency layer
 # Ensure the binary name 'axum-folder' matches your Cargo.toml [package].name
 RUN cargo build --release --bin axum-folder
 
