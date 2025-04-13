@@ -15,7 +15,7 @@
           "header header header"
           "subheader subheader subheader"
           "nav main aside"
-          "nav main-footer aside"
+          "nav main-footer aside" /* main > footer now targets this */
           "footer footer footer";
         grid-template-rows: auto auto auto 1fr auto auto;
         grid-template-columns: 200px 1fr 200px;
@@ -26,50 +26,58 @@
         background-color: #f0f0f0; /* Light background for contrast */
       }
 
-      /* Assign grid areas */
-      #app-banner { grid-area: banner; background-color: lightblue; padding: 10px; }
-      #app-header { grid-area: header; background-color: lightcoral; padding: 10px; }
-      #app-subheader { grid-area: subheader; background-color: lightgoldenrodyellow; padding: 10px; }
-      #app-menu-or-nav { grid-area: nav; background-color: lightgreen; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky nav */
-      #app-main-content { grid-area: main; background-color: white; padding: 10px; }
-      #app-aside { grid-area: aside; background-color: lightpink; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky aside */
-      #app-main-footer { grid-area: main-footer; background-color: lightgray; padding: 10px; }
-      #app-footer { grid-area: footer; background-color: lightslategray; color: white; padding: 10px; }
+      /* Assign grid areas using semantic elements and classes */
+      /* Using attribute selector for banner as it's still a div */
+      div[role="banner"] { grid-area: banner; background-color: lightblue; padding: 10px; }
+      /* Direct child selector for header to avoid conflicts if nested headers exist */
+      body > header { grid-area: header; background-color: lightcoral; padding: 10px; }
+      /* Using attribute selector for subheader */
+      div[role="navigation"][aria-label="Breadcrumb"] { grid-area: subheader; background-color: lightgoldenrodyellow; padding: 10px; }
+      /* Using class selector for main navigation */
+      nav.page-nav { grid-area: nav; background-color: lightgreen; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky nav */
+      /* Targeting main element */
+      main { grid-area: main; background-color: white; padding: 10px; }
+      /* Using class selector for aside */
+      aside.page-aside { grid-area: aside; background-color: lightpink; padding: 10px; position: sticky; top: 10px; align-self: start; } /* Sticky aside */
+      /* Targeting footer within main */
+      main > footer { grid-area: main-footer; background-color: lightgray; padding: 10px; }
+      /* Using class selector for page footer */
+      footer.page-footer { grid-area: footer; background-color: lightslategray; color: white; padding: 10px; }
 
-      /* Hide empty sections */
-      #app-banner:empty,
-      #app-header:empty,
-      #app-subheader:empty,
-      #app-menu-or-nav:empty,
-      #app-aside:empty,
-      #app-main-header:empty,
-      #app-main-footer:empty,
-      #app-footer:empty {
+      /* Hide empty sections using updated selectors */
+      div[role="banner"]:empty,
+      body > header:empty,
+      div[role="navigation"][aria-label="Breadcrumb"]:empty,
+      nav.page-nav:empty,
+      aside.page-aside:empty,
+      main > header:empty, /* Target header inside main */
+      main > footer:empty,  /* Target footer inside main */
+      footer.page-footer:empty {
         display: none;
       }
 
-      /* Basic styling for nav elements */
-      #app-menu-or-nav header, #app-menu-or-nav footer {
+      /* Basic styling for nav elements using updated selectors */
+      nav.page-nav header, nav.page-nav footer { /* Target header/footer inside .page-nav */
         font-weight: bold;
         margin-bottom: 5px;
         margin-top: 5px;
       }
-      #app-menu-or-nav nav ul {
+      nav.page-nav nav ul { /* Target ul inside the inner nav */
         list-style: none;
         padding: 0;
         margin: 0;
       }
-       #app-menu-or-nav nav li a {
+       nav.page-nav nav li a { /* Target links inside the inner nav */
         display: block;
         padding: 5px;
         text-decoration: none;
         color: inherit;
        }
-       #app-menu-or-nav nav li a:hover {
+       nav.page-nav nav li a:hover {
         background-color: rgba(0,0,0,0.1);
        }
 
-      /* Placeholder for skip link */
+      /* Placeholder for skip link - targets main element by ID */
       #skip-to-content a {
         position: absolute;
         left: -10000px;
@@ -84,12 +92,12 @@
         height: auto;
       }
 
-      /* Placeholder for nav toggle */
-      #navigation-toggle button {
+      /* Placeholder for nav toggle using class */
+      .navigation-toggle button {
         /* Add styles for your toggle button */
         padding: 5px 10px;
       }
-      #navigation-toggle-icon {
+      .navigation-toggle button span { /* Target span inside toggle button */
         /* Style for the icon within the toggle */
         display: inline-block;
         width: 1em;
@@ -99,7 +107,7 @@
         margin-left: 5px;
       }
 
-      /* Responsive adjustments (example) */
+      /* Responsive adjustments (example) using updated selectors */
       @media (max-width: 768px) {
         body {
           grid-template-areas:
@@ -114,7 +122,7 @@
           grid-template-columns: 1fr;
           grid-template-rows: auto; /* Adjust rows */
         }
-        #app-menu-or-nav, #app-aside {
+        nav.page-nav, aside.page-aside { /* Target nav and aside by class */
             position: static; /* Remove sticky on mobile */
         }
         /* Add logic to show/hide nav with toggle button */
@@ -123,47 +131,47 @@
     </style>
   </head>
   <body>
-    <!-- skip-to-content -->
+    <!-- skip-to-content (references main#app-main-content) -->
     <div id="skip-to-content">
       <a href="#app-main-content">Skip to main content</a>
       <!-- Add other skip links here if needed -->
     </div>
 
     <!-- banner -->
-    <div id="app-banner" role="banner">
+    <div role="banner">
       <!-- Banner content goes here (e.g., site-wide announcements) -->
       <!-- This section is hidden if empty -->
     </div>
 
     <!-- header -->
-    <header id="app-header">
+    <header>
       <!-- Header content goes here (e.g., logo, site title, main actions) -->
       <!-- This section is hidden if empty -->
     </header>
 
     <!-- subheader -->
-    <div id="app-subheader" role="navigation" aria-label="Breadcrumb">
+    <div role="navigation" aria-label="Breadcrumb">
       <!-- Subheader content goes here (e.g., breadcrumbs) -->
       <!-- This section is hidden if empty -->
     </div>
 
     <!-- menu OR navigation -->
-    <div id="app-menu-or-nav">
+    <nav class="page-nav">
       <!-- If using the 'menu' slot, custom content goes here -->
       <!-- If using default navigation slots: -->
-      <div id="navigation-toggle">
+      <div class="navigation-toggle"> <!-- Use class instead of ID -->
         <button type="button" aria-label="Toggle Navigation">
           Menu
-          <span id="navigation-toggle-icon">☰</span> <!-- Default icon placeholder -->
+          <span>☰</span> <!-- Removed ID -->
           <!-- Or slot your custom icon here -->
         </button>
         <!-- Slot your custom toggle button here -->
       </div>
-      <header id="navigation-header">
+      <header> <!-- Removed ID -->
         <!-- Navigation header content -->
         Navigation Title
       </header>
-      <nav id="navigation" aria-label="Main Navigation">
+      <nav aria-label="Main Navigation"> <!-- Removed ID, inner nav element -->
         <!-- Navigation links/content -->
         <ul>
             <li><a href="/">Home</a></li>
@@ -171,16 +179,16 @@
             <li><a href="/contact">Contact</a></li>
         </ul>
       </nav>
-      <footer id="navigation-footer">
+      <footer> <!-- Removed ID -->
         <!-- Navigation footer content -->
         Nav Footer Info
       </footer>
       <!-- This section is hidden if empty -->
-    </div>
+    </nav>
 
     <!-- main -->
-    <main id="app-main-content">
-      <header id="main-header">
+    <main id="app-main-content"> <!-- Keep ID for skip link -->
+      <header> <!-- Removed ID -->
         <!-- Main content header (e.g., page title) -->
         <h1>Page Title</h1>
       </header>
@@ -190,14 +198,14 @@
       <p>More content follows...</p>
       <!-- ... -->
 
-      <footer id="main-footer">
+      <footer> <!-- Removed ID -->
         <!-- Main content footer (e.g., related links, actions specific to main content) -->
         End of Main Content Section
-      </foot    er>
+      </footer>
     </main>
 
     <!-- aside -->
-    <aside id="app-aside">
+    <aside class="page-aside"> <!-- Use class instead of ID -->
       <!-- Aside content goes here (e.g., table of contents, related info, ads) -->
       <h3>Table of Contents</h3>
       <ul>
@@ -208,7 +216,7 @@
     </aside>
 
     <!-- footer -->
-    <footer id="app-footer">
+    <footer class="page-footer"> <!-- Use class instead of ID -->
       <!-- Footer content goes here (e.g., copyright, contact info, site map links) -->
       <p>&copy; 2025 Your Website. All rights reserved.</p>
       <!-- This section is hidden if empty -->
