@@ -26,11 +26,11 @@ WORKDIR /app
 # Ensure the binary name 'axum-folder' matches your Cargo.toml [package].name
 COPY --from=builder /app/target/release/axum-folder /app/axum-folder
 
-# Copy the public assets folder required by the application
+# Copy the public assets folder required by the application (from build context)
 COPY public ./public
 
-# Copy the templates folder required by Askama at runtime
-COPY templates ./templates
+# Copy the templates folder required by Askama at runtime (from builder stage)
+COPY --from=builder /app/templates ./templates
 
 # Set the default port the application will listen on.
 # Your main.rs reads this environment variable.
