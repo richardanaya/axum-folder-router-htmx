@@ -14,14 +14,22 @@ body {
   overflow-y: auto;
 }
 
+/* Removed the generic 'div' rule:
 div {
   background: var(--gray-3);
   padding: var(--size-5);
   border-radius: var(--radius-2);
   width: 100%;
 }
+*/
 
 div[variant="card"] {
+  /* Added properties from the generic 'div' rule here */
+  background: var(--gray-3);
+  padding: var(--size-5);
+  border-radius: var(--radius-2);
+  width: 100%;
+  /* Existing card-specific style */
   box-shadow: var(--shadow-5);
 }
 
