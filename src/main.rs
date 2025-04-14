@@ -36,7 +36,7 @@ mod api_routes {
 async fn main() -> Result<(), sqlx::Error> {
     // Return sqlx::Error
     // Load environment variables from .env file
-    dotenvy::dotenv().expect("Failed to read .env file");
+    dotenvy::dotenv().ok();
 
     // --- Database Connection ---
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");

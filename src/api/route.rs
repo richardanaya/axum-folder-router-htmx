@@ -18,7 +18,14 @@ pub async fn get(jar: PrivateCookieJar) -> impl IntoResponse {
     if let Some(cookie) = jar.get("username") {
         // User is logged in, render landing page
         let username = cookie.value().to_string();
-        Html(LandingPage { username: &username }.render().unwrap()).into_response()
+        Html(
+            LandingPage {
+                username: &username,
+            }
+            .render()
+            .unwrap(),
+        )
+        .into_response()
     } else {
         // User is not logged in, render login page
         Html(LoginTemplate {}.render().unwrap()).into_response()
