@@ -1,6 +1,6 @@
 # ---- Builder Stage ----
 # Use a specific Rust version for consistency
-FROM rust:1.83 as builder
+FROM rust:1.86 as builder
 
 # Set the working directory in the container
 WORKDIR /app
