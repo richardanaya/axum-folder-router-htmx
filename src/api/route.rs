@@ -6,7 +6,7 @@ use axum_extra::extract::cookie::PrivateCookieJar; // Import PrivateCookieJar
 #[derive(Template)]
 #[template(path = "landing_page.html")]
 struct LandingPage<'a> {
-    username: &'a str, // Add username field
+    email: &'a str, // Changed from username to email
 }
 
 #[derive(Template)]
@@ -15,15 +15,13 @@ struct LoginTemplate {}
 
 // Modify the get handler
 pub async fn get(jar: PrivateCookieJar) -> impl IntoResponse {
-    if let Some(cookie) = jar.get("username") {
+    if let Some(cookie) = jar.get("email") { // Check for "email" cookie
         // User is logged in, render landing page
-        let username = cookie.value().to_string();
+        let email = cookie.value().to_string(); // Get email value
         Html(
-            LandingPage {
-                username: &username,
-            }
-            .render()
-            .unwrap(),
+            LandingPage { email: &email } // Pass email to template
+                .render()
+                .unwrap(),
         )
         .into_response()
     } else {

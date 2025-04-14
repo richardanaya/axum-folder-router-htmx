@@ -10,13 +10,13 @@
     <div variant="card">
       <h1>Login</h1>
       <form method="POST" action="/login">
-        <label for="username">Username: </label>
+        <label for="email">Email: </label> {# Changed label text #}
         <input
-          type="text"
-          id="username"
-          name="username"
+          type="email"      {# Changed type to email for basic browser validation #}
+          id="email"        {# Changed id #}
+          name="email"       {# Changed name #}
           required
-          placeholder="Enter your username"
+          placeholder="Enter your email" {# Changed placeholder #}
         />
         <button type="submit">Login</button>
       </form>
