@@ -1,2 +1,4 @@
--- Add up migration script here
-DROP TABLE IF EXISTS first_table;
+CREATE TABLE IF NOT EXISTS first_table (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);

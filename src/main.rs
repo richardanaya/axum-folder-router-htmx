@@ -36,7 +36,8 @@ mod api_routes {
 }
 
 #[tokio::main]
-async fn main() -> Result<(), sqlx::Error> { // Return sqlx::Error
+async fn main() -> Result<(), sqlx::Error> {
+    // Return sqlx::Error
     // Load environment variables from .env file
     dotenvy::dotenv().expect("Failed to read .env file");
 
@@ -49,12 +50,6 @@ async fn main() -> Result<(), sqlx::Error> { // Return sqlx::Error
         .connect(&database_url)
         .await?; // Use ? for error propagation
     println!("Database connection pool created.");
-
-    // Run migrations
-    sqlx::migrate!()
-        .run(&pool)
-        .await?; // Use ? for error propagation
-    println!("Database migrations ran successfully.");
 
     // Fetch all items from first_table
     let items = sqlx::query_as::<_, Item>("SELECT id, name FROM first_table ORDER BY id")
@@ -73,7 +68,6 @@ async fn main() -> Result<(), sqlx::Error> { // Return sqlx::Error
     println!("----------------------------");
     // --- End Database Connection and Initial Query ---
 
-
     // --- Web Server Setup ---
     // Generate a secure key for cookie handling.
     let key = Key::generate();
@@ -81,7 +75,10 @@ async fn main() -> Result<(), sqlx::Error> { // Return sqlx::Error
     // Create the application state.
     // Clone the pool for the AppState, as the original 'pool' might be used elsewhere if needed,
     // though in this setup it's fine to move it directly if preferred.
-    let app_state = AppState { key, pool: pool.clone() };
+    let app_state = AppState {
+        key,
+        pool: pool.clone(),
+    };
 
     // Build the router and provide the state.
     let app = api_routes::build_router()

@@ -7,4 +7,10 @@ create_migration:
 
 # run migration using sqlx (cargo install sqlx-cli --no-default-features --features native-tls,postgres)
 migrate:
-	(env $(cat .env | xargs) sqlx migrate run )
+	sqlx migrate run
+
+revert_migrate:
+	sqlx migrate revert
+
+ai:
+	aider --model openrouter/google/gemini-2.5-pro-preview-03-25
