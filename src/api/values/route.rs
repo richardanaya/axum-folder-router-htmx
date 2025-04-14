@@ -4,7 +4,7 @@ use askama::Template;
 use axum::{
     extract::{Form, State},
     http::StatusCode,
-    response::{Html, IntoResponse, Redirect},
+    response::{Html, IntoResponse, Redirect, Response}, // Import Response
 };
 use axum_extra::extract::cookie::PrivateCookieJar;
 use serde::Deserialize;
