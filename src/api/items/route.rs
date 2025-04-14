@@ -4,7 +4,7 @@ use askama::Template;
 use axum::{
     extract::State,
     http::StatusCode,
-    response::{Html, IntoResponse, Response},
+    response::{Html, IntoResponse, Response}, // Response is already imported
 };
 use sqlx::PgPool;
 
@@ -15,7 +15,8 @@ struct ItemsTemplate {
 }
 
 // Handler function for GET /items
-pub async fn get(State(pool): State<PgPool>) -> impl IntoResponse {
+// Change return type from impl IntoResponse to Response
+pub async fn get(State(pool): State<PgPool>) -> Response {
     let items_result = sqlx::query_as::<_, Item>("SELECT id, name FROM first_table ORDER BY id")
         .fetch_all(&pool)
         .await;
