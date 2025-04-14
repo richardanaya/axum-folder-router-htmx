@@ -53,7 +53,6 @@ async fn main() -> Result<(), sqlx::Error> {
     println!("Database connection pool created.");
     // --- End Database Connection ---
 
-
     // --- Web Server Setup ---
     // Generate a secure key for cookie handling.
     let key = Key::generate();

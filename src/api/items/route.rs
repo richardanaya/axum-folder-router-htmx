@@ -1,4 +1,4 @@
-use crate::{AppState, Item}; // Import AppState and Item from main.rs (or models module if refactored)
+use crate::AppState; // Import AppState and Item from main.rs (or models module if refactored)
 use askama::Template;
 use axum::{
     extract::State,
@@ -6,6 +6,10 @@ use axum::{
     response::{Html, IntoResponse, Response},
 };
 use sqlx::PgPool;
+
+|                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+|
+= note: this error originates in the macro `$crate::sqlx_macros::expand_query` which comes from the expansion of the macro `sqlx::query` (in Nightly builds, run with -Z macro-backtrace for more info)
 
 #[derive(Template)]
 #[template(path = "items.html")] // Points to the new template
@@ -29,10 +33,7 @@ pub async fn get(State(pool): State<PgPool>) -> Result<impl IntoResponse, Respon
                 Err(e) => {
                     // Handle template rendering errors
                     eprintln!("Template rendering error: {}", e);
-                    Err((
-                        StatusCode::INTERNAL_SERVER_ERROR,
-                        "Failed to render page",
-                    )
+                    Err((StatusCode::INTERNAL_SERVER_ERROR, "Failed to render page")
                         .into_response())
                 }
             }
