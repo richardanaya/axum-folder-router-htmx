@@ -6,6 +6,7 @@ use std::env;
 use tower_http::services::ServeDir;
 
 mod model;
+mod services;
 
 #[derive(Clone)]
 pub struct AppState {

@@ -1,4 +1,5 @@
 use crate::model::{PersonalValue, User}; // Import models
+use crate::services::auth_service;
 use crate::AppState;
 use askama::Template;
 use axum::{
@@ -37,35 +38,9 @@ pub struct AddValueParams {
     parent_id: Option<i32>, // Add parent_id, make it optional
 }
 
-// Helper function to get user ID from email cookie
-async fn get_user_from_cookie(jar: &PrivateCookieJar, pool: &PgPool) -> Result<User, Response> {
-    let email = jar
-        .get("email")
-        .map(|cookie| cookie.value().to_string())
-        .ok_or_else(|| Redirect::to("/").into_response())?; // Redirect home if not logged in
-
-    // Clone email here to satisfy the borrow checker for the error case below
-    let email_clone_for_query = email.clone();
-
-    sqlx::query_as::<_, User>("SELECT id, email FROM users WHERE email = $1")
-        .bind(email_clone_for_query) // Bind the cloned parameter
-        .fetch_optional(pool)
-        .await
-        .map_err(|e| {
-            eprintln!("Database error fetching user: {}", e);
-            (StatusCode::INTERNAL_SERVER_ERROR, "Database error").into_response()
-        })?
-        .ok_or_else(move || {
-            // Use move closure to capture the original email
-            // Should not happen if login ensures user exists, but handle defensively
-            eprintln!("User not found for email in cookie: {}", email); // Use original email here
-            Redirect::to("/").into_response() // Redirect home
-        })
-}
-
 // GET handler for /values
 pub async fn get(jar: PrivateCookieJar, State(pool): State<PgPool>) -> impl IntoResponse {
-    let user = match get_user_from_cookie(&jar, &pool).await {
+    let user = match auth_service().get_user_from_cookie(&jar, &pool).await {
         Ok(user) => user,
         Err(response) => return response, // Return redirect or error response
     };
@@ -124,7 +99,7 @@ pub async fn post(
     State(pool): State<PgPool>,
     Form(params): Form<AddValueParams>,
 ) -> impl IntoResponse {
-    let user = match get_user_from_cookie(&jar, &pool).await {
+    let user = match auth_service().get_user_from_cookie(&jar, &pool).await {
         Ok(user) => user,
         Err(response) => return response, // Return redirect or error response
     };
