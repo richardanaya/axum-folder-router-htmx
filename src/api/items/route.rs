@@ -1,4 +1,4 @@
-use crate::AppState; // Import AppState and Item from main.rs (or models module if refactored)
+use crate::Item; // Import Item from the crate root (via src/lib.rs)
 use askama::Template;
 use axum::{
     extract::State,
@@ -6,10 +6,6 @@ use axum::{
     response::{Html, IntoResponse, Response},
 };
 use sqlx::PgPool;
-
-|                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-|
-= note: this error originates in the macro `$crate::sqlx_macros::expand_query` which comes from the expansion of the macro `sqlx::query` (in Nightly builds, run with -Z macro-backtrace for more info)
 
 #[derive(Template)]
 #[template(path = "items.html")] // Points to the new template
