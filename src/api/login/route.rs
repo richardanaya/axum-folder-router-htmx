@@ -25,10 +25,10 @@ pub async fn post(
     // Check if user exists, insert if not
     // Using ON CONFLICT DO NOTHING to handle potential race conditions and simplify logic
     // RETURNING id is useful if we needed the user ID later
-    let insert_result = sqlx::query!(
-        "INSERT INTO users (email) VALUES ($1) ON CONFLICT (email) DO NOTHING",
-        params.email
+    let insert_result = sqlx::query(
+        "INSERT INTO users (email) VALUES ($1) ON CONFLICT (email) DO NOTHING"
     )
+    .bind(&params.email) // Bind the parameter
     .execute(&pool)
     .await;
 

@@ -16,13 +16,23 @@ struct ItemsTemplate {
 
 // Handler function for GET /items
 pub async fn get(State(pool): State<PgPool>) -> impl IntoResponse {
-    ItemsTemplate {
-        items: sqlx::query_as::<_, Item>("SELECT id, name FROM first_table ORDER BY id")
-            .fetch_all(&pool)
-            .await
-            .unwrap(),
+    let items_result = sqlx::query_as::<_, Item>("SELECT id, name FROM first_table ORDER BY id")
+        .fetch_all(&pool)
+        .await;
+
+    match items_result {
+        Ok(items) => {
+            match ItemsTemplate { items }.render() {
+                Ok(html) => Html(html).into_response(),
+                Err(e) => {
+                    eprintln!("Template rendering error: {}", e);
+                    (StatusCode::INTERNAL_SERVER_ERROR, "Template error").into_response()
+                }
+            }
+        }
+        Err(e) => {
+            eprintln!("Database error fetching items: {}", e);
+            (StatusCode::INTERNAL_SERVER_ERROR, "Database error").into_response()
+        }
     }
-    .render()
-    .unwrap()
-    .into_response()
 }
