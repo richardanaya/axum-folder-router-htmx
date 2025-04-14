@@ -1,3 +1,5 @@
+If you like this, check out this delightful macro! https://github.com/vault81/axum-folder-router
+
 # HTMX + Rust + NextJS Folder-based Router
 
 This repository is an example that shows my dream setup for HTMX and Rust. It demonstrates a folder router based system inspired by NextJS. The structure leverages Rust with the Axum framework and Askama for neat, clean, typed templates.
