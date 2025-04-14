@@ -36,6 +36,15 @@
                     <label for="description">Description (Optional):</label><br>
                     <textarea id="description" name="description" rows="3" placeholder="Why is this value important to you?"></textarea>
                 </div>
+                <div style="margin-top: var(--size-2);">
+                    <label for="parent_id">Parent Value (Optional):</label><br>
+                    <select id="parent_id" name="parent_id">
+                        <option value="">-- No Parent --</option> {# Empty value means NULL #}
+                        {% for parent in potential_parents %}
+                            <option value="{{ parent.id }}">{{ parent.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <button type="submit" style="margin-top: var(--size-3);">Add Value</button>
             </form>
         </section>

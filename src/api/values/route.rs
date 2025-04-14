@@ -14,8 +14,9 @@ use sqlx::PgPool;
 #[derive(Template)]
 #[template(path = "values.html")]
 struct ValuesTemplate {
-    email: String, // Pass user email to template
-    values: Vec<PersonalValue>, // List of user's values
+    email: String,              // Pass user email to template
+    values: Vec<PersonalValue>, // List of user's values (potentially hierarchical later)
+    potential_parents: Vec<PersonalValue>, // List of values to choose as parent
 }
 
 // Struct for the form data when adding a value
@@ -23,6 +24,7 @@ struct ValuesTemplate {
 pub struct AddValueParams {
     name: String,
     description: Option<String>,
+    parent_id: Option<i32>, // Add parent_id, make it optional
 }
 
 // Helper function to get user ID from email cookie
@@ -57,9 +59,9 @@ pub async fn get(jar: PrivateCookieJar, State(pool): State<PgPool>) -> impl Into
         Err(response) => return response, // Return redirect or error response
     };
 
-    // Fetch personal values for the user
+    // Fetch personal values for the user, including parent_id
     let values_result = sqlx::query_as::<_, PersonalValue>(
-        "SELECT id, user_id, name, description FROM personal_values WHERE user_id = $1 ORDER BY name"
+        "SELECT id, user_id, name, description, parent_id FROM personal_values WHERE user_id = $1 ORDER BY name"
     )
     .bind(user.id) // Bind the parameter separately
     .fetch_all(&pool)
@@ -73,9 +75,13 @@ pub async fn get(jar: PrivateCookieJar, State(pool): State<PgPool>) -> impl Into
         }
     };
 
+    // Clone the fetched values to use for the parent dropdown
+    let potential_parents = values.clone();
+
     let template = ValuesTemplate {
         email: user.email,
         values,
+        potential_parents, // Pass potential parents to the template
     };
 
     match template.render() {
@@ -104,13 +110,14 @@ pub async fn post(
         return Redirect::to("/values").into_response();
     }
 
-    // Insert the new value, handling potential unique constraint violation
+    // Insert the new value, including parent_id, handling potential unique constraint violation
     let insert_result = sqlx::query(
-        "INSERT INTO personal_values (user_id, name, description) VALUES ($1, $2, $3) ON CONFLICT (user_id, name) DO NOTHING"
+        "INSERT INTO personal_values (user_id, name, description, parent_id) VALUES ($1, $2, $3, $4) ON CONFLICT (user_id, name) DO NOTHING"
     )
     .bind(user.id)
     .bind(params.name.trim()) // Trim whitespace
     .bind(params.description.as_deref().filter(|s| !s.trim().is_empty())) // Store None if description is empty/whitespace
+    .bind(params.parent_id) // Bind the optional parent_id
     .execute(&pool)
     .await;
 
