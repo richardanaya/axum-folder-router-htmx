@@ -22,6 +22,7 @@ pub async fn get(State(pool): State<PgPool>) -> impl IntoResponse {
 
     match items_result {
         Ok(items) => {
+            // Correctly match the Result from render()
             match ItemsTemplate { items }.render() {
                 Ok(html) => Html(html).into_response(),
                 Err(e) => {
