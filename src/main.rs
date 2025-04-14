@@ -5,12 +5,7 @@ use sqlx::PgPool; // Import PgPool
 use std::env;
 use tower_http::services::ServeDir;
 
-// Import the Item struct from the library root (defined in src/lib.rs which points to src/model.rs)
-// Replace `rust_template` with your actual crate name if it's different.
-// If main.rs is the crate root (no lib.rs), you might use `crate::model::Item`
-// or add `mod model; pub use model::Item;` directly here.
-// Assuming src/lib.rs exists and defines the crate root:
-use rust_template::Item; // Adjust this line based on your crate structure/name
+mod model;
 
 #[derive(Clone)]
 pub struct AppState {

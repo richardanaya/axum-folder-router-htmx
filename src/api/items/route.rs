@@ -1,4 +1,5 @@
-use crate::Item; // Import Item from the crate root (via src/lib.rs)
+use crate::model::Item; // Import the Item struct
+use crate::AppState; // Import AppState and Item from main.rs (or models module if refactored)
 use askama::Template;
 use axum::{
     extract::State,

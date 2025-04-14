@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-serde = { version = "1.0.216", features = ["derive"] }
+serde = { version = "1.0.219", features = ["derive"] }
 askama = "0.13.0"
 axum = "0.8"
 axum-extra = { version = "0.10.1", features = ["form","cookie","cookie-private"] }
-tokio = { version = "1.35", features = ["full"] }
+tokio = { version = "1.44", features = ["full"] }
 tower-http = { version = "0.5.2", features = ["fs"] }
 sqlx = { version = "0.8", features = [ "runtime-tokio", "tls-native-tls", "postgres" ] }
 dotenvy = "0.15.7"
