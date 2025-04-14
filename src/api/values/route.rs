@@ -9,14 +9,24 @@ use axum::{
 use axum_extra::extract::cookie::PrivateCookieJar;
 use serde::Deserialize;
 use sqlx::PgPool;
+use std::collections::HashMap; // Import HashMap
+
+// View model for displaying values in the template
+#[derive(Clone)] // Add Clone derive
+struct ValueView {
+    id: i32,
+    name: String,
+    description: Option<String>,
+    parent_name: Option<String>, // Add parent name
+}
 
 // Template for the values page
 #[derive(Template)]
 #[template(path = "values.html")]
 struct ValuesTemplate {
-    email: String,              // Pass user email to template
-    values: Vec<PersonalValue>, // List of user's values (potentially hierarchical later)
-    potential_parents: Vec<PersonalValue>, // List of values to choose as parent
+    email: String,
+    values: Vec<ValueView>, // Use ValueView for display
+    potential_parents: Vec<PersonalValue>, // Keep PersonalValue for the dropdown
 }
 
 // Struct for the form data when adding a value
@@ -75,13 +85,30 @@ pub async fn get(jar: PrivateCookieJar, State(pool): State<PgPool>) -> impl Into
         }
     };
 
-    // Clone the fetched values to use for the parent dropdown
-    let potential_parents = values.clone();
+    // Create a lookup map for parent names
+    let id_to_name: HashMap<i32, String> = values
+        .iter()
+        .map(|v| (v.id, v.name.clone()))
+        .collect();
+
+    // Map PersonalValue to ValueView for display
+    let value_views: Vec<ValueView> = values
+        .iter()
+        .map(|v| ValueView {
+            id: v.id,
+            name: v.name.clone(),
+            description: v.description.clone(),
+            parent_name: v.parent_id.and_then(|pid| id_to_name.get(&pid).cloned()), // Look up parent name
+        })
+        .collect();
+
+    // Keep the original values for the parent dropdown
+    let potential_parents = values;
 
     let template = ValuesTemplate {
         email: user.email,
-        values,
-        potential_parents, // Pass potential parents to the template
+        values: value_views, // Pass the view models
+        potential_parents,   // Pass original values for dropdown
     };
 
     match template.render() {

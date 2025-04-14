@@ -60,6 +60,9 @@
                     {% for value in values %}
                         <li>
                             <strong>{{ value.name }}</strong>
+                            {% if value.parent_name.is_some() %}
+                                <span style="font-size: var(--font-size-0); color: var(--gray-6); margin-left: var(--size-2);">(Parent: {{ value.parent_name.clone().unwrap() }})</span>
+                            {% endif %}
                             {% if value.description.is_some() %}
                                 <p style="margin-left: var(--size-4); margin-top: var(--size-1); font-size: var(--font-size-0);">{{ value.description.clone().unwrap() }}</p>
                             {% endif %}
