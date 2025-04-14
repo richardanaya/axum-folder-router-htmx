@@ -24,13 +24,7 @@ pub async fn get(State(pool): State<PgPool>) -> Response {
     match items_result {
         Ok(items) => {
             // Directly return the result of the inner match
-            match ItemsTemplate { items }.render() {
-                Ok(html) => Html(html).into_response(),
-                Err(e) => {
-                    eprintln!("Template rendering error: {}", e);
-                    (StatusCode::INTERNAL_SERVER_ERROR, "Template error").into_response()
-                }
-            } // The result of this match is the return value for the Ok arm
+            ItemsTemplate { items }.render().unwrap().into_response()
         }
         Err(e) => {
             eprintln!("Database error fetching items: {}", e);
