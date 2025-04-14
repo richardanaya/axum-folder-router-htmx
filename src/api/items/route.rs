@@ -22,15 +22,14 @@ pub async fn get(State(pool): State<PgPool>) -> impl IntoResponse {
 
     match items_result {
         Ok(items) => {
-            // Assign the result of the inner match to a variable
-            let response = match ItemsTemplate { items }.render() {
+            // Directly return the result of the inner match
+            match ItemsTemplate { items }.render() {
                 Ok(html) => Html(html).into_response(),
                 Err(e) => {
                     eprintln!("Template rendering error: {}", e);
                     (StatusCode::INTERNAL_SERVER_ERROR, "Template error").into_response()
                 }
-            };
-            response // Return the response variable
+            } // The result of this match is the return value for the Ok arm
         }
         Err(e) => {
             eprintln!("Database error fetching items: {}", e);
