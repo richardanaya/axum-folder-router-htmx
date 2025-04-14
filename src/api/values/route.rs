@@ -25,7 +25,7 @@ struct ValueView {
 #[template(path = "values.html")]
 struct ValuesTemplate {
     email: String,
-    values: Vec<ValueView>, // Use ValueView for display
+    values: Vec<ValueView>,                // Use ValueView for display
     potential_parents: Vec<PersonalValue>, // Keep PersonalValue for the dropdown
 }
 
@@ -55,7 +55,8 @@ async fn get_user_from_cookie(jar: &PrivateCookieJar, pool: &PgPool) -> Result<U
             eprintln!("Database error fetching user: {}", e);
             (StatusCode::INTERNAL_SERVER_ERROR, "Database error").into_response()
         })?
-        .ok_or_else(move || { // Use move closure to capture the original email
+        .ok_or_else(move || {
+            // Use move closure to capture the original email
             // Should not happen if login ensures user exists, but handle defensively
             eprintln!("User not found for email in cookie: {}", email); // Use original email here
             Redirect::to("/").into_response() // Redirect home
@@ -86,10 +87,7 @@ pub async fn get(jar: PrivateCookieJar, State(pool): State<PgPool>) -> impl Into
     };
 
     // Create a lookup map for parent names
-    let id_to_name: HashMap<i32, String> = values
-        .iter()
-        .map(|v| (v.id, v.name.clone()))
-        .collect();
+    let id_to_name: HashMap<i32, String> = values.iter().map(|v| (v.id, v.name.clone())).collect();
 
     // Map PersonalValue to ValueView for display
     let value_views: Vec<ValueView> = values

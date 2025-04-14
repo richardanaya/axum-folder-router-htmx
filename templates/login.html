@@ -1,25 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/global.css" />
-  </head>
-  <body>
-    <div variant="card">
-      <h1>Login</h1>
-      <form method="POST" action="/login">
-        <label for="email">Email: </label> {# Changed label text #}
-        <input
-          type="email"      {# Changed type to email for basic browser validation #}
-          id="email"        {# Changed id #}
-          name="email"       {# Changed name #}
-          required
-          placeholder="Enter your email" {# Changed placeholder #}
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
+%}
+<div variant="card">
+  <h1>Login</h1>
+  <form method="POST" action="/login">
+    <label for="email">Email: </label> {# Changed label text #}
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      placeholder="Enter your email"
+    />
+    <button type="submit">Login</button>
+  </form>
+</div>
+{% endblock %}

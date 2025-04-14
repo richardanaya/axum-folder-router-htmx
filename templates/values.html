@@ -1,77 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Values</title>
-    <link rel="stylesheet" href="/css/global.css">
-    <script
-      src="https://unpkg.com/htmx.org@2.0.4"
-      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-      crossorigin="anonymous"
-    ></script>
-</head>
-<body>
-    <div variant="card">
-        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--size-4);">
-            <p>Logged in as: {{ email }}</p>
-            <div>
-                <a href="/" style="margin-right: var(--size-2);"><button type="button" variant="ghost">Home</button></a>
-                <form method="POST" action="/logout" style="display: inline;">
-                    <button type="submit" variant="ghost">Logout</button>
-                </form>
-            </div>
-        </header>
-
-        <h1>My Personal Values</h1>
-
-        <section>
-            <h2>Add a New Value</h2>
-            <form method="POST" action="/values">
-                <div>
-                    <label for="name">Value Name:</label><br>
-                    <input type="text" id="name" name="name" required placeholder="e.g., Honesty, Creativity">
-                </div>
-                <div style="margin-top: var(--size-2);">
-                    <label for="description">Description (Optional):</label><br>
-                    <textarea id="description" name="description" rows="3" placeholder="Why is this value important to you?"></textarea>
-                </div>
-                <div style="margin-top: var(--size-2);">
-                    <label for="parent_id">Parent Value (Optional):</label><br>
-                    <select id="parent_id" name="parent_id">
-                        <option value="">-- No Parent --</option> {# Empty value means NULL #}
-                        {% for parent in potential_parents %}
-                            <option value="{{ parent.id }}">{{ parent.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <button type="submit" style="margin-top: var(--size-3);">Add Value</button>
-            </form>
-        </section>
-
-        <hr style="margin: var(--size-6) 0">
-
-        <section>
-            <h2>Existing Values</h2>
-            {% if values.is_empty() %}
-                <p>You haven't added any values yet.</p>
-            {% else %}
-                <ul>
-                    {% for value in values %}
-                        <li>
-                            <strong>{{ value.name }}</strong>
-                            {% if value.parent_name.is_some() %}
-                                <span style="font-size: var(--font-size-0); color: var(--gray-6); margin-left: var(--size-2);">(Parent: {{ value.parent_name.clone().unwrap() }})</span>
-                            {% endif %}
-                            {% if value.description.is_some() %}
-                                <p style="margin-left: var(--size-4); margin-top: var(--size-1); font-size: var(--font-size-0);">{{ value.description.clone().unwrap() }}</p>
-                            {% endif %}
-                            {# Add delete/edit buttons here later if needed #}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </section>
+{% extends "base.html" %} {% block title %}Welcome{% endblock %} {% block
+content %}
+<div variant="card">
+  <header
+    style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--size-4);
+    "
+  >
+    <p>Logged in as: {{ email }}</p>
+    <div>
+      <a href="/" style="margin-right: var(--size-2)"
+        ><button type="button" variant="ghost">Home</button></a
+      >
+      <form method="POST" action="/logout" style="display: inline">
+        <button type="submit" variant="ghost">Logout</button>
+      </form>
     </div>
-</body>
-</html>
+  </header>
+
+  <h1>My Personal Values</h1>
+
+  <section>
+    <h2>Add a New Value</h2>
+    <form method="POST" action="/values">
+      <div>
+        <label for="name">Value Name:</label><br />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="e.g., Honesty, Creativity"
+        />
+      </div>
+      <div style="margin-top: var(--size-2)">
+        <label for="description">Description (Optional):</label><br />
+        <textarea
+          id="description"
+          name="description"
+          rows="3"
+          placeholder="Why is this value important to you?"
+        ></textarea>
+      </div>
+      <div style="margin-top: var(--size-2)">
+        <label for="parent_id">Parent Value (Optional):</label><br />
+        <select id="parent_id" name="parent_id">
+          <option value="">-- No Parent --</option>
+          {# Empty value means NULL #} {% for parent in potential_parents %}
+          <option value="{{ parent.id }}">{{ parent.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" style="margin-top: var(--size-3)">Add Value</button>
+    </form>
+  </section>
+
+  <hr style="margin: var(--size-6) 0" />
+
+  <section>
+    <h2>Existing Values</h2>
+    {% if values.is_empty() %}
+    <p>You haven't added any values yet.</p>
+    {% else %}
+    <ul>
+      {% for value in values %}
+      <li>
+        <strong>{{ value.name | safe }}</strong>
+        {% if value.parent_name.is_some() %}
+        <span
+          style="
+            font-size: var(--font-size-0);
+            color: var(--gray-6);
+            margin-left: var(--size-2);
+          "
+          >(Parent: {{ value.parent_name.clone().unwrap() }})</span
+        >
+        {% endif %} {% if value.description.is_some() %}
+        <p
+          style="
+            margin-left: var(--size-4);
+            margin-top: var(--size-1);
+            font-size: var(--font-size-0);
+          "
+        >
+          {{ value.description.clone().unwrap() }}
+        </p>
+        {% endif %} {# Add delete/edit buttons here later if needed #}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

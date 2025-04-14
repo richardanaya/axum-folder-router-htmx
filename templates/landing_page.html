@@ -1,61 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shout It Out</title>
-    <script
-      src="https://unpkg.com/htmx.org@2.0.4"
-      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/css/global.css" />
-  </head>
-  <body>
-    <div variant="card">
-      {# Changed main to div to match style #}
-      <header
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: var(--size-4);
-        "
-      >
-        <p>Welcome, {{ email }}!</p> {# Display email #}
-        <form method="POST" action="/logout" style="margin: 0">
-          {# Logout form #}
-          <button type="submit" variant="ghost">Logout</button>
-        </form>
-      </header>
+{% extends "base.html" %} {% block title %}Welcome{% endblock %} {% block
+content %}
+<div variant="card">
+  {# Changed main to div to match style #}
+  <header
+    style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--size-4);
+    "
+  >
+    <p>Welcome, {{ email }}!</p>
+    {# Display email #}
+    <form method="POST" action="/logout" style="margin: 0">
+      {# Logout form #}
+      <button type="submit" variant="ghost">Logout</button>
+    </form>
+  </header>
 
-      <h1>Shout It Out!</h1>
-      <p>What word would you like to shout?</p>
-      <form
-        id="word-form"
-        method="POST"
-        action="/shout"
-        hx-post="/shout"
-        hx-target="#shouted-word"
-        hx-swap="innerHTML"
-        hx-trigger="submit"
-      >
-        <input
-          type="text"
-          name="word"
-          id="word"
-          placeholder="Enter a word to shout"
-          required
-        />
-        <button type="submit">Shout!</button>
-      </form>
-      <div id="shouted-word"></div>
+  <h1>Shout It Out!</h1>
+  <p>What word would you like to shout?</p>
+  <form
+    id="word-form"
+    method="POST"
+    action="/shout"
+    hx-post="/shout"
+    hx-target="#shouted-word"
+    hx-swap="innerHTML"
+    hx-trigger="submit"
+  >
+    <input
+      type="text"
+      name="word"
+      id="word"
+      placeholder="Enter a word to shout"
+      required
+    />
+    <button type="submit">Shout!</button>
+  </form>
+  <div id="shouted-word"></div>
 
-      <hr style="margin: var(--size-6) 0" />
-      <p><a href="/values">Manage My Values</a></p> {# Link to Values page #}
-      <p><a href="/ui">View UI Kitchen Sink</a></p>
-      {# Link to UI page #}
-    </div>
-    {# Close div #}
-  </body>
-</html>
+  <hr style="margin: var(--size-6) 0" />
+  <p><a href="/values">Manage My Values</a></p>
+  {# Link to Values page #}
+  <p><a href="/ui">View UI Kitchen Sink</a></p>
+  {# Link to UI page #}
+</div>
+{# Close div #} {% endblock %}
