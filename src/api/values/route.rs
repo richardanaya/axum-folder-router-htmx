@@ -83,21 +83,6 @@ pub async fn get(jar: PrivateCookieJar, State(pool): State<PgPool>) -> impl Into
         }
     }
 }
-        eprintln!("Database error fetching values: {}", e);
-        (StatusCode::INTERNAL_SERVER_ERROR, "Database error").into_response()
-    })?;
-
-    ValuesTemplate {
-        email: user.email,
-        values,
-    }
-    .render()
-    .map(Html)
-    .map_err(|e| {
-        eprintln!("Template rendering error: {}", e);
-        (StatusCode::INTERNAL_SERVER_ERROR, "Internal error").into_response()
-    })
-}
 
 // POST handler for /values
 pub async fn post(
