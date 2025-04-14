@@ -24,10 +24,11 @@ impl FromRef<AppState> for PgPool {
 }
 
 // Define a struct matching the 'first_table' columns for fetching
-#[derive(FromRow, Debug)]
-struct Item {
-    id: i32,
-    name: String,
+// This might be moved to a shared module (e.g., `src/models.rs`) later if used elsewhere.
+#[derive(FromRow, Debug, Clone)]
+pub struct Item {
+    pub id: i32,
+    pub name: String,
 }
 
 mod api_routes {
@@ -41,7 +42,7 @@ async fn main() -> Result<(), sqlx::Error> {
     // Load environment variables from .env file
     dotenvy::dotenv().expect("Failed to read .env file");
 
-    // --- Database Connection and Initial Query ---
+    // --- Database Connection ---
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
 
     // Create a connection pool using PgPoolOptions
@@ -50,34 +51,17 @@ async fn main() -> Result<(), sqlx::Error> {
         .connect(&database_url)
         .await?; // Use ? for error propagation
     println!("Database connection pool created.");
+    // --- End Database Connection ---
 
-    // Fetch all items from first_table
-    let items = sqlx::query_as::<_, Item>("SELECT id, name FROM first_table ORDER BY id")
-        .fetch_all(&pool)
-        .await?; // Use ? for error propagation
-
-    // Print the fetched items
-    println!("--- Items in first_table ---");
-    if items.is_empty() {
-        println!("No items found.");
-    } else {
-        for item in items {
-            println!("ID: {}, Name: {}", item.id, item.name);
-        }
-    }
-    println!("----------------------------");
-    // --- End Database Connection and Initial Query ---
 
     // --- Web Server Setup ---
     // Generate a secure key for cookie handling.
     let key = Key::generate();
 
     // Create the application state.
-    // Clone the pool for the AppState, as the original 'pool' might be used elsewhere if needed,
-    // though in this setup it's fine to move it directly if preferred.
     let app_state = AppState {
         key,
-        pool: pool.clone(),
+        pool: pool.clone(), // Clone the pool for the AppState
     };
 
     // Build the router and provide the state.
